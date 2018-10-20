@@ -194,7 +194,45 @@
 fun2(11,22);//11 22
 fun2(100);//100 2
 </code></pre></li>
-<li>箭头函数</li>
+<li>箭头函数<pre><code>var person = {
+ name:&quot;tom&quot;,
+ sayHi:()=&gt;{
+     console.log(this);//window对象
+     console.log(&quot;hello,everyone. my name is &quot;+this.name);//hello,everyone. my name is window的name
+ }
+}
+person.sayHi();
+</code></pre>对于箭头函数，this的指向问题。</li>
+</ol>
+<h3 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h3><ol>
+<li>数组</li>
+<li>对象</li>
+<li>json</li>
+</ol>
+<h3 id="string中includes方法"><a href="#string中includes方法" class="headerlink" title="string中includes方法"></a>string中includes方法</h3><pre><code>var str = &quot;hello&quot;;
+console.log( str.includes(&quot;e&quot;) )//true
+console.log( str.includes(&quot;e&quot;,3) );//false
+</code></pre><h3 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h3><p>es5中的几种方法：（待补充）</p>
+<ol>
+<li>字面量法</li>
+<li>工厂模式</li>
+<li>构造函数</li>
+<li>组合方式：构造函数+原型模式<br>es6中创建对象：<pre><code>class Person{
+ //肯定存在一个构造函数
+ constructor(name,age,sex,nativePlace){
+     this.name=name;//注意：这里是分号
+     this.age=age;
+     this.sex=sex;
+     this.nativePlace=nativePlace;
+ }
+ //下面是函数属性
+ eat(){console.log(&quot;红烧排骨&quot;)}
+ study(){console.log(&quot;英文&quot;)}
+ play(){console.log(&quot;敲代码&quot;)}
+}
+var sunShine = new Person(&quot;fanfan&quot;,&quot;22&quot;,&quot;女&quot;,&quot;黑龙江&quot;);
+console.log(sunShine)//Person {name: &quot;fanfan&quot;, age: &quot;22&quot;, sex: &quot;女&quot;, nativePlace: &quot;黑龙江&quot;}
+</code></pre></li>
 </ol>
 
                 <hr>
@@ -224,7 +262,7 @@ fun2(100);//100 2
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常见面试问题总结（js）"><span class="toc-text">常见面试问题总结（js）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#es6新特性"><span class="toc-text">es6新特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#块级作用域"><span class="toc-text">块级作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于函数"><span class="toc-text">关于函数</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常见面试问题总结（js）"><span class="toc-text">常见面试问题总结（js）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#es6新特性"><span class="toc-text">es6新特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#块级作用域"><span class="toc-text">块级作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于函数"><span class="toc-text">关于函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string中includes方法"><span class="toc-text">string中includes方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建对象"><span class="toc-text">创建对象</span></a></li></ol></li></ol></li></ol>
                 </div>
             </div>
         </div>
