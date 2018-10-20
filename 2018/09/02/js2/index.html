@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
 
 <!-- Head tag -->
 <head>
@@ -40,6 +42,10 @@
         background-image: url('//o7bkkhiex.bkt.clouddn.com/lion-blur-bg.jpg')
     }
 </style>
+
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
@@ -178,40 +184,242 @@
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
                 <h1 id="搜索算法"><a href="#搜索算法" class="headerlink" title="搜索算法"></a>搜索算法</h1><h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><p>二分查找要求表中元素按关键字有序排列。就是将查找的键和子数组的中间键作比较，如果被查找的键小于中间键，就在左子数组继续查找；如果大于中间键，就在右子数组中查找，否则中间键就是要找的元素</p>
 <p>其代码实现如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Search(nums, key) &#123;</span><br><span class="line">    var start = 0;</span><br><span class="line">    var end = nums.length-1;</span><br><span class="line">    while(start&lt;=end)&#123;</span><br><span class="line">        var mid = parseInt(start+(end-start))/2;</span><br><span class="line">        if(nums[mid] === key)&#123;</span><br><span class="line">            return mid;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(nums[mid] &gt; key)&#123;</span><br><span class="line">            end = mid-1;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">            start = mid+1;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="深度优先搜索（DFS）"><a href="#深度优先搜索（DFS）" class="headerlink" title="深度优先搜索（DFS）"></a>深度优先搜索（DFS）</h2><p>深度优先即是取得要遍历的节点时如果发现有子节点（children） 时，则不断的深度遍历，并把这些节点放入一个待搜索的栈（Stack）中，直到最后一个没有子节点的节点时，开始对栈进行搜索。后进先出（下列代码中使用了 push 方法入栈，因此需使用 pop 方法出栈），如果没有匹配到，则删掉此节点，同时删掉父节点中的自身，不断重复遍历直到匹配为止。</p>
+<pre><code>function Search(nums, key) {
+    var start = 0;
+    var end = nums.length-1;
+    while(start&lt;=end){
+        var mid = parseInt(start+(end-start))/2;
+        if(nums[mid] === key){
+            return mid;
+        }
+        else if(nums[mid] &gt; key){
+            end = mid-1;
+        }
+        else
+            start = mid+1;
+    }
+    return -1;
+};
+</code></pre><h2 id="深度优先搜索（DFS）"><a href="#深度优先搜索（DFS）" class="headerlink" title="深度优先搜索（DFS）"></a>深度优先搜索（DFS）</h2><p>深度优先即是取得要遍历的节点时如果发现有子节点（children） 时，则不断的深度遍历，并把这些节点放入一个待搜索的栈（Stack）中，直到最后一个没有子节点的节点时，开始对栈进行搜索。后进先出（下列代码中使用了 push 方法入栈，因此需使用 pop 方法出栈），如果没有匹配到，则删掉此节点，同时删掉父节点中的自身，不断重复遍历直到匹配为止。</p>
 <p>注：常规的深度优先并不会破坏原始数据结构，而是采用 isVisited 或者颜色标记法进行表示。</p>
-<p>递归算法代码如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function deepTraversal(node, nodeList)&#123;</span><br><span class="line">    if(node)&#123;</span><br><span class="line">        nodeList.push(node);</span><br><span class="line">        var children = node.children;</span><br><span class="line">        for(var i=0;i&lt;children.length;i++)&#123;</span><br><span class="line">            deepTraversal(children[i], nodeList);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return nodeList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>非递归实现如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function deepTraversal(node)&#123;</span><br><span class="line">    var nodeList = [];</span><br><span class="line">    if(node)&#123;</span><br><span class="line">        var stack = [];</span><br><span class="line">        stack.push(node);</span><br><span class="line">        while(stack.length != 0)&#123;</span><br><span class="line">            var childrenItem = stack.pop();</span><br><span class="line">            nodeList.push(childrenItem);</span><br><span class="line">            var childrenList = childrenItem.children;</span><br><span class="line">            for(var i=childrenList.length-1;i&gt;=0;i--)&#123;</span><br><span class="line">                stack.push(childrenList[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return nodeList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h2><p>广度优先遍历二叉树，也就是按层次的去遍历。依次遍历根节点，然后是左孩子和右孩子。所以要遍历完当前节点的所有孩子，根据左右孩子的顺序来输出，所以就是先进先出的原则，那么应该使用队列这个数据结构。</p>
+<p>递归算法代码如下：</p>
+<pre><code>    function deepTraversal(node, nodeList){
+        if(node){
+            nodeList.push(node);
+            var children = node.children;
+            for(var i=0;i&lt;children.length;i++){
+                deepTraversal(children[i], nodeList);
+            }
+        }
+        return nodeList;
+    }
+</code></pre><p>非递归实现如下：</p>
+<pre><code>    function deepTraversal(node){
+        var nodeList = [];
+        if(node){
+            var stack = [];
+            stack.push(node);
+            while(stack.length != 0){
+                var childrenItem = stack.pop();
+                nodeList.push(childrenItem);
+                var childrenList = childrenItem.children;
+                for(var i=childrenList.length-1;i&gt;=0;i--){
+                    stack.push(childrenList[i]);
+                }
+            }
+        }
+        return nodeList;
+    }
+</code></pre><h2 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h2><p>广度优先遍历二叉树，也就是按层次的去遍历。依次遍历根节点，然后是左孩子和右孩子。所以要遍历完当前节点的所有孩子，根据左右孩子的顺序来输出，所以就是先进先出的原则，那么应该使用队列这个数据结构。</p>
 <p>非递归算法实现如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function wideTraversal(node)&#123;</span><br><span class="line">    var nodeList = [];</span><br><span class="line">    if(node != null)&#123;</span><br><span class="line">        var queue = [];</span><br><span class="line">        queue.unshift(node);</span><br><span class="line">        while(queue.length != 0)&#123;</span><br><span class="line">            var item = queue.shift();</span><br><span class="line">            nodeList.push(item);</span><br><span class="line">            var children = item.children;</span><br><span class="line">            for(var i=0;i&lt;children.length;i++)&#123;</span><br><span class="line">                queue.push(children[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return nodeList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><h2 id="冒泡排序-Bubble-Sort"><a href="#冒泡排序-Bubble-Sort" class="headerlink" title="冒泡排序(Bubble Sort)"></a>冒泡排序(Bubble Sort)</h2><p>时间复杂度：平均O(n^2)  最坏O(n^2)  最好O(n)</p>
+<pre><code>    function wideTraversal(node){
+        var nodeList = [];
+        if(node != null){
+            var queue = [];
+            queue.unshift(node);
+            while(queue.length != 0){
+                var item = queue.shift();
+                nodeList.push(item);
+                var children = item.children;
+                for(var i=0;i&lt;children.length;i++){
+                    queue.push(children[i]);
+                }
+            }
+        }
+        return nodeList;
+    }
+</code></pre><h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><h2 id="冒泡排序-Bubble-Sort"><a href="#冒泡排序-Bubble-Sort" class="headerlink" title="冒泡排序(Bubble Sort)"></a>冒泡排序(Bubble Sort)</h2><p>时间复杂度：平均O(n^2)  最坏O(n^2)  最好O(n)</p>
 <p>算法比较相邻的两个数，如果后面&lt;前面，交换。</p>
-<p>代码实现如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function bubbleSort(arr)&#123;</span><br><span class="line">    var flag = false;   //flag表示是否交换了位置</span><br><span class="line">    for(var i=0;i&lt;arr.length-1;i++)&#123;</span><br><span class="line">        for(var j=0;j&lt;arr.length-1;j++)&#123;</span><br><span class="line">            if(arr[j+1]&lt;arr[j])&#123;</span><br><span class="line">                var temp = arr[j+1];</span><br><span class="line">                arr[j+1] = arr[j];</span><br><span class="line">                arr[j] = temp;</span><br><span class="line">                flag = true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(flag)&#123;</span><br><span class="line">            flag = false;   //数组进行了交换</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            break;  //数组有序，跳出循环</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>代码中设置了标识位进行优化，如果数组本来为有序，则不需要进行比较。</p>
+<p>代码实现如下：</p>
+<pre><code>    function bubbleSort(arr){
+        var flag = false;   //flag表示是否交换了位置
+        for(var i=0;i&lt;arr.length-1;i++){
+            for(var j=0;j&lt;arr.length-1;j++){
+                if(arr[j+1]&lt;arr[j]){
+                    var temp = arr[j+1];
+                    arr[j+1] = arr[j];
+                    arr[j] = temp;
+                    flag = true;
+                }
+            }
+            if(flag){
+                flag = false;   //数组进行了交换
+            }else{
+                break;  //数组有序，跳出循环
+            }
+        }
+        return arr;
+    }
+</code></pre><p>代码中设置了标识位进行优化，如果数组本来为有序，则不需要进行比较。</p>
 <h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>时间复杂度：平均O(n^2)  最坏O(n^2)  最好O(n^2)</p>
 <p>先从原始数组中选择一个最小的数据，和第一个位置的数据交换。再从剩下的n-1个数据中选择次小的数据，将其和第二个位置的数据交换。不断重复，直到最后两个数据完成交换。可以很清楚的发现，选择排序是固定位置，找元素。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function selectionSort(arr)&#123;</span><br><span class="line">    var min,temp;</span><br><span class="line">    for(var i=0;i&lt;arr.length-1;i++)&#123;</span><br><span class="line">        min = i;</span><br><span class="line">        for(var j=i+1;j&lt;arr.length;j++)&#123;</span><br><span class="line">            if(arr[j]&lt;arr[min])&#123;</span><br><span class="line">                min = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(arr,min,i);</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function swap(arr,i,j)&#123;</span><br><span class="line">    var temp = arr[i];</span><br><span class="line">    arr[i] = arr[j];</span><br><span class="line">    arr[j] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>时间复杂度：平均O(n^2)  最坏O(n^2) 最好O(n) </p>
+<pre><code>    function selectionSort(arr){
+        var min,temp;
+        for(var i=0;i&lt;arr.length-1;i++){
+            min = i;
+            for(var j=i+1;j&lt;arr.length;j++){
+                if(arr[j]&lt;arr[min]){
+                    min = j;
+                }
+            }
+            swap(arr,min,i);
+        }
+        return arr;
+    }
+
+    function swap(arr,i,j){
+        var temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+</code></pre><h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>时间复杂度：平均O(n^2)  最坏O(n^2) 最好O(n) </p>
 <p>首先对前两个数据从小到大比较。接着将第三个数据与排好的前两个数据比较，将第三个数据插入合适的位置。以此类推。(插入排序有两个循环，外循环将数组挨个移动，内循环将对外循环选中的元素及他前面的数进行比较。)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function insertSort(arr)&#123;</span><br><span class="line">    var temp, j;</span><br><span class="line">    for(var i=1;i&lt;arr.length;i++)&#123;</span><br><span class="line">        temp = arr[i];</span><br><span class="line">        j = i;</span><br><span class="line">        while(j&gt;0 &amp;&amp; arr[j-1]&gt;temp)&#123;</span><br><span class="line">            arr[j] = arr[j-1];</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>时间复杂度：平均O(nlogn)    最坏O(nlogn)    最好O(nlogn)</p>
+<pre><code>    function insertSort(arr){
+        var temp, j;
+        for(var i=1;i&lt;arr.length;i++){
+            temp = arr[i];
+            j = i;
+            while(j&gt;0 &amp;&amp; arr[j-1]&gt;temp){
+                arr[j] = arr[j-1];
+                j--;
+            }
+            arr[j] = temp;
+        }
+        return arr;
+    }
+</code></pre><h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>时间复杂度：平均O(nlogn)    最坏O(nlogn)    最好O(nlogn)</p>
 <p>归并排序把一个数组分为两个数组，左边排好序，右边排好序，然后合并到一起排序。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function mergeSort(arr, s, e)&#123;</span><br><span class="line">    if(s&gt;e)&#123;</span><br><span class="line">        return [];</span><br><span class="line">    &#125;else if(s == e)&#123;</span><br><span class="line">        return [arr[s]];</span><br><span class="line">    &#125;</span><br><span class="line">    var mIndex = Math.floor((s+e)/2);</span><br><span class="line">    var arrL = mergeSort(arr,s,mIndex);</span><br><span class="line">    var arrR = mergeSort(arr,mIndex+1,e);</span><br><span class="line"></span><br><span class="line">    var resultArr = [];</span><br><span class="line">    while(arrL.length&gt;0 || arrR.length&gt;0)&#123;</span><br><span class="line">        if(arrL[0]&lt;arrR[0])&#123;</span><br><span class="line">            resultArr.push(arrL.shift());</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            resultArr.push(arrR.shift());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if(arrL.length == 0)&#123;</span><br><span class="line">            resultArr = resultArr.concat(arrR);</span><br><span class="line">            break;</span><br><span class="line">        &#125;else if(arrR.length == 0)&#123;</span><br><span class="line">            resultArr = resultArr.concat(arrL);</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return resultArr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>时间复杂度：平均O(nlogn)    最坏O(n^2)  最好O(nlogn)</p>
+<pre><code>    function mergeSort(arr, s, e){
+        if(s&gt;e){
+            return [];
+        }else if(s == e){
+            return [arr[s]];
+        }
+        var mIndex = Math.floor((s+e)/2);
+        var arrL = mergeSort(arr,s,mIndex);
+        var arrR = mergeSort(arr,mIndex+1,e);
+
+        var resultArr = [];
+        while(arrL.length&gt;0 || arrR.length&gt;0){
+            if(arrL[0]&lt;arrR[0]){
+                resultArr.push(arrL.shift());
+            }else{
+                resultArr.push(arrR.shift());
+            }
+
+            if(arrL.length == 0){
+                resultArr = resultArr.concat(arrR);
+                break;
+            }else if(arrR.length == 0){
+                resultArr = resultArr.concat(arrL);
+                break;
+            }
+        }
+        return resultArr;
+    }
+</code></pre><h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>时间复杂度：平均O(nlogn)    最坏O(n^2)  最好O(nlogn)</p>
 <p>（1）在数据集之中，选择一个元素作为”基准”（pivot）。<br>（2）所有小于”基准”的元素，都移到”基准”的左边；所有大于”基准”的元素，都移到”基准”的右边。<br>（3）对”基准”左边和右边的两个子集，不断重复第一步和第二步，直到所有子集只剩下一个元素为止。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function quickSort(arr)&#123;</span><br><span class="line">    if(arr.length&lt;=1)&#123;</span><br><span class="line">        return arr;</span><br><span class="line">    &#125;</span><br><span class="line">    var pivotIndex = Math.floor(arr.length/2);</span><br><span class="line">    var pivot = arr.splice([pivotIndex],1)[0];</span><br><span class="line">    var left = [];</span><br><span class="line">    var right = [];</span><br><span class="line"></span><br><span class="line">    for(var i=0;i&lt;arr.length;i++)&#123;</span><br><span class="line">        if(arr[i]&lt;pivot)&#123;</span><br><span class="line">            left.push(arr[i]);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            right.push(arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return quickSort(left).concat([pivot],quickSort(right));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p>时间复杂度：平均O(nlogn)    最坏O(n^2)  最好O(nlogn)</p>
+<pre><code>    function quickSort(arr){
+        if(arr.length&lt;=1){
+            return arr;
+        }
+        var pivotIndex = Math.floor(arr.length/2);
+        var pivot = arr.splice([pivotIndex],1)[0];
+        var left = [];
+        var right = [];
+
+        for(var i=0;i&lt;arr.length;i++){
+            if(arr[i]&lt;pivot){
+                left.push(arr[i]);
+            }else{
+                right.push(arr[i]);
+            }
+        }
+        return quickSort(left).concat([pivot],quickSort(right));
+    }
+</code></pre><h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p>时间复杂度：平均O(nlogn)    最坏O(n^2)  最好O(nlogn)</p>
 <p>堆排序是选择排序的一种。</p>
 <h3 id="堆相关"><a href="#堆相关" class="headerlink" title="堆相关"></a>堆相关</h3><p>堆是一个完全二叉树（二叉树除开最后一层，其他层结点数都达到最大，最后一层的所有结点都集中在左边（左边结点排列满的情况下，右边才能缺失结点））。</p>
 <p>大顶堆：根结点为最大值，每个结点的值大于或等于其孩子结点的值。</p>
 <p>小顶堆：根结点为最小值，每个结点的值小于或等于其孩子结点的值。</p>
-<h3 id="堆排序的实现"><a href="#堆排序的实现" class="headerlink" title="堆排序的实现"></a>堆排序的实现</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 交换两个节点</span><br><span class="line">function swap(A, i, j) &#123;</span><br><span class="line">  let temp = A[i];</span><br><span class="line">  A[i] = A[j];</span><br><span class="line">  A[j] = temp; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 将 i 结点以下的堆整理为大顶堆，注意这一步实现的基础实际上是：</span><br><span class="line">// 假设 结点 i 以下的子堆已经是一个大顶堆，shiftDown函数实现的</span><br><span class="line">// 功能是实际上是：找到 结点 i 在包括结点 i 的堆中的正确位置。后面</span><br><span class="line">// 将写一个 for 循环，从第一个非叶子结点开始，对每一个非叶子结点</span><br><span class="line">// 都执行 shiftDown操作，所以就满足了结点 i 以下的子堆已经是一大</span><br><span class="line">//顶堆</span><br><span class="line">function shiftDown(A, i, length) &#123;</span><br><span class="line">  let temp = A[i]; // 当前父节点</span><br><span class="line">// j&lt;length 的目的是对结点 i 以下的结点全部做顺序调整</span><br><span class="line">  for(let j = 2*i+1; j&lt;length; j = 2*j+1) &#123;</span><br><span class="line">    temp = A[i];  // 将 A[i] 取出，整个过程相当于找到 A[i] 应处于的位置</span><br><span class="line">    if(j+1 &lt; length &amp;&amp; A[j] &lt; A[j+1]) &#123; </span><br><span class="line">      j++;   // 找到两个孩子中较大的一个，再与父节点比较</span><br><span class="line">    &#125;</span><br><span class="line">    if(temp &lt; A[j]) &#123;</span><br><span class="line">      swap(A, i, j) // 如果父节点小于子节点:交换；否则跳出</span><br><span class="line">      i = j;  // 交换后，temp 的下标变为 j</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      break;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 堆排序</span><br><span class="line">function heapSort(A) &#123;</span><br><span class="line">  // 初始化大顶堆，从第一个非叶子结点开始</span><br><span class="line">  for(let i = Math.floor(A.length/2-1); i&gt;=0; i--) &#123;</span><br><span class="line">    shiftDown(A, i, A.length);</span><br><span class="line">  &#125;</span><br><span class="line">  // 排序，每一次for循环找出一个当前最大值，数组长度减一</span><br><span class="line">  for(let i = Math.floor(A.length-1); i&gt;0; i--) &#123;</span><br><span class="line">    swap(A, 0, i); // 根节点与最后一个节点交换</span><br><span class="line">    shiftDown(A, 0, i); // 从根节点开始调整，并且最后一个结点已经为当</span><br><span class="line">                         // 前最大值，不需要再参与比较，所以第三个参数</span><br><span class="line">                         // 为 i，即比较到最后一个结点前一个即可</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let Arr = [4, 6, 8, 5, 9, 1, 2, 5, 3, 2];</span><br><span class="line">heapSort(Arr);</span><br><span class="line">alert(Arr);</span><br></pre></td></tr></table></figure>
+<h3 id="堆排序的实现"><a href="#堆排序的实现" class="headerlink" title="堆排序的实现"></a>堆排序的实现</h3><pre><code>// 交换两个节点
+function swap(A, i, j) {
+  let temp = A[i];
+  A[i] = A[j];
+  A[j] = temp; 
+}
+
+// 将 i 结点以下的堆整理为大顶堆，注意这一步实现的基础实际上是：
+// 假设 结点 i 以下的子堆已经是一个大顶堆，shiftDown函数实现的
+// 功能是实际上是：找到 结点 i 在包括结点 i 的堆中的正确位置。后面
+// 将写一个 for 循环，从第一个非叶子结点开始，对每一个非叶子结点
+// 都执行 shiftDown操作，所以就满足了结点 i 以下的子堆已经是一大
+//顶堆
+function shiftDown(A, i, length) {
+  let temp = A[i]; // 当前父节点
+// j&lt;length 的目的是对结点 i 以下的结点全部做顺序调整
+  for(let j = 2*i+1; j&lt;length; j = 2*j+1) {
+    temp = A[i];  // 将 A[i] 取出，整个过程相当于找到 A[i] 应处于的位置
+    if(j+1 &lt; length &amp;&amp; A[j] &lt; A[j+1]) { 
+      j++;   // 找到两个孩子中较大的一个，再与父节点比较
+    }
+    if(temp &lt; A[j]) {
+      swap(A, i, j) // 如果父节点小于子节点:交换；否则跳出
+      i = j;  // 交换后，temp 的下标变为 j
+    } else {
+      break;
+    }
+  }
+}
+
+// 堆排序
+function heapSort(A) {
+  // 初始化大顶堆，从第一个非叶子结点开始
+  for(let i = Math.floor(A.length/2-1); i&gt;=0; i--) {
+    shiftDown(A, i, A.length);
+  }
+  // 排序，每一次for循环找出一个当前最大值，数组长度减一
+  for(let i = Math.floor(A.length-1); i&gt;0; i--) {
+    swap(A, 0, i); // 根节点与最后一个节点交换
+    shiftDown(A, 0, i); // 从根节点开始调整，并且最后一个结点已经为当
+                         // 前最大值，不需要再参与比较，所以第三个参数
+                         // 为 i，即比较到最后一个结点前一个即可
+  }
+}
+
+let Arr = [4, 6, 8, 5, 9, 1, 2, 5, 3, 2];
+heapSort(Arr);
+alert(Arr);
+</code></pre>
                 <hr>
                 
 
                 <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/10/20/interview/" data-toggle="tooltip" data-placement="top"
+                           title="interview">&larr; Previous Post</a>
+                    </li>
                     
                     
                     <li class="next">

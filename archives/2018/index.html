@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
 
 <!-- Head tag -->
 <head>
@@ -40,6 +42,10 @@
         background-image: url('//o7bkkhiex.bkt.clouddn.com/lion-blur-bg.jpg')
     }
 </style>
+
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
@@ -153,6 +159,35 @@
 
 <div class="post-preview "
      style="background-image: url('')">
+    <a href="/2018/10/20/interview/">
+        <h2 class="post-title">
+            interview
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-10-20
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                常见面试问题总结（js）es6新特性块级作用域
+没有变量提升，必须先声明后使用
+let声明的变量，不能与前面的let、var、const声明的变量重名
+const 声明的同时必须赋值（初始化），初始化后不能修改，声明的变量也是一个块级作用域变量
+
+关于函数
+es6可以给形参函数设置默认值（包括构..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview "
+     style="background-image: url('')">
     <a href="/2018/09/02/js2/">
         <h2 class="post-title">
             常见算法总结
@@ -165,7 +200,8 @@
             <p>
                 搜索算法二分查找二分查找要求表中元素按关键字有序排列。就是将查找的键和子数组的中间键作比较，如果被查找的键小于中间键，就在左子数组继续查找；如果大于中间键，就在右子数组中查找，否则中间键就是要找的元素
 其代码实现如下：
-function Search(nums, key) &#123;    ..
+function Search(nums, key) {
+    var ..
             </p>
         </div>
     </a>
@@ -188,7 +224,7 @@ function Search(nums, key) &#123;    ..
         
         <div class="post-content-preview">
             <p>
-                垂直居中水平居中分栏问题两栏三栏，中间自适应，左右固定三栏，右侧自适应，左中固定
+                垂直居中水平居中分栏问题两栏三栏，中间自适应，左右固定三栏，右侧自适应，左中固定sickty footer
             </p>
         </div>
     </a>
@@ -318,6 +354,8 @@ map/reducefiltersortsort()作为一个高阶函数的使用方法，可以接收
             
             <section>
                 <div class="tags">
+                    
+                    
                     
                     
                     
