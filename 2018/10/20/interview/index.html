@@ -192,8 +192,21 @@ a.length = 0;    // 可执行
 a = [&#39;Dave&#39;];    // 报错
 </code></pre></li>
 </ol>
+<h2 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h2><ol>
+<li>数组</li>
+<li>对象</li>
+<li>json</li>
+</ol>
+<h2 id="基本类型的扩展"><a href="#基本类型的扩展" class="headerlink" title="基本类型的扩展"></a>基本类型的扩展</h2><ol>
+<li>字符串<br>模板字符串（多行字符）<br>includes方法<pre><code>var str = &quot;hello&quot;;
+console.log( str.includes(&quot;e&quot;) )//true
+console.log( str.includes(&quot;e&quot;,3) );//false
+</code></pre></li>
+<li>正则</li>
+<li>数值</li>
+</ol>
 <h2 id="关于函数"><a href="#关于函数" class="headerlink" title="关于函数"></a>关于函数</h2><ol>
-<li>es6可以给形参函数设置默认值（包括构造函数）<pre><code>function fun2(a=1,b=2){
+<li>es6可以给形参函数设置默认值（包括构造函数），默认值作用域<pre><code>function fun2(a=1,b=2){
  console.log(a,b)//1,2
 }
 fun2(11,22);//11 22
@@ -207,20 +220,7 @@ fun2(100);//100 2
  }
 }
 person.sayHi();
-</code></pre>对于箭头函数，this的指向问题。</li>
-</ol>
-<h2 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h2><ol>
-<li>数组</li>
-<li>对象</li>
-<li>json</li>
-</ol>
-<h2 id="string中includes方法"><a href="#string中includes方法" class="headerlink" title="string中includes方法"></a>string中includes方法</h2><pre><code>var str = &quot;hello&quot;;
-console.log( str.includes(&quot;e&quot;) )//true
-console.log( str.includes(&quot;e&quot;,3) );//false
-</code></pre><h2 id="基本类型的扩展"><a href="#基本类型的扩展" class="headerlink" title="基本类型的扩展"></a>基本类型的扩展</h2><ol>
-<li>字符串<br>模板字符串（多行字符）</li>
-<li>正则</li>
-<li>数值</li>
+</code></pre>对于箭头函数：<br>（1）函数体内的this对象，就是定义时所在的对象，不是使用时所在的对象；（在箭头函数中，this的指向是固定的）<br>（2）不能使用new；<br>（3）无arguments对象，使用rest参数；<br>（4）不能使用yield命令。</li>
 </ol>
 <h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><p>es5中的几种方法：（待补充）</p>
 <ol>
@@ -244,7 +244,13 @@ var sunShine = new Person(&quot;fanfan&quot;,&quot;22&quot;,&quot;女&quot;,&quo
 console.log(sunShine)//Person {name: &quot;fanfan&quot;, age: &quot;22&quot;, sex: &quot;女&quot;, nativePlace: &quot;黑龙江&quot;}
 </code></pre></li>
 </ol>
+<h2 id="Set与Map"><a href="#Set与Map" class="headerlink" title="Set与Map"></a>Set与Map</h2><p>数组去重</p>
+<pre><code>function dedupe(array) {
+  return Array.from(new Set(array));
+}
 
+dedupe([1, 1, 2, 3]) // [1, 2, 3]
+</code></pre>
                 <hr>
                 
 
@@ -272,7 +278,7 @@ console.log(sunShine)//Person {name: &quot;fanfan&quot;, age: &quot;22&quot;, se
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#es6新特性"><span class="toc-text">es6新特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#块级作用域"><span class="toc-text">块级作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于函数"><span class="toc-text">关于函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string中includes方法"><span class="toc-text">string中includes方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本类型的扩展"><span class="toc-text">基本类型的扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象"><span class="toc-text">创建对象</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#es6新特性"><span class="toc-text">es6新特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#块级作用域"><span class="toc-text">块级作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本类型的扩展"><span class="toc-text">基本类型的扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于函数"><span class="toc-text">关于函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象"><span class="toc-text">创建对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set与Map"><span class="toc-text">Set与Map</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
