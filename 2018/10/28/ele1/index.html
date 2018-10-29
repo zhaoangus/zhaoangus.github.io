@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="赵翰奕在 Github 上的个人博客">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="Angus" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        饿了么项目的一些总结（1）｜Angus&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://zhaoangus.github.io/2018/10/28/ele1/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('//o7bkkhiex.bkt.clouddn.com/lion-blur-bg.jpg')
+    }
+</style>
+
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Angus
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/Tags/">Tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>饿了么项目的一些总结（1）</h1>
+                    
+                    <span class="meta">
+                         作者 Zhao Angus
+                        <span>
+                          日期 2018-10-28
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Vue"
+                           title="Vue">Vue</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            饿了么项目的一些总结（1）
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>饿了么项目github源码地址：<a href="https://github.com/zhaoangus/ele_demo" target="_blank" rel="noopener">饿了么源码</a></p>
+<p>在饿了么项目的学习中，主要有以下3个方面的技术点：</p>
+<ol>
+<li>开发方法</li>
+</ol>
+<ul>
+<li>组件化及模块化的开发模式</li>
+<li>模拟后台json数据</li>
+<li>webpack原理</li>
+</ul>
+<ol start="2">
+<li>使用Vue相关组件及第三方组件</li>
+</ol>
+<ul>
+<li>Vue-router</li>
+<li>axios</li>
+<li>better-scroll</li>
+</ul>
+<ol start="3">
+<li>设计思想与设计模式</li>
+</ol>
+<ul>
+<li>移动端设备像素比的概念</li>
+<li>移动端1px边框问题</li>
+<li>经典布局问题如sticky footer</li>
+</ul>
+<h1 id="webpack相关"><a href="#webpack相关" class="headerlink" title="webpack相关"></a>webpack相关</h1><h2 id="webpack配置分析"><a href="#webpack配置分析" class="headerlink" title="webpack配置分析"></a>webpack配置分析</h2><p>整个项目结构如下：</p>
+<pre><code>.
+├── build/                      # webpack config files（webpack配置文件）
+│   └── ...
+├── config/
+│   ├── index.js                # main project config（项目配置文件）
+│   └── ...
+├── src/
+│   ├── main.js                 # app entry file
+│   ├── App.vue                 # main app component
+│   ├── components/             # ui components
+│   │   └── ...
+│   └── assets/                 # module assets (processed by webpack)（资源，一般存放字体等文件）
+│       └── ...
+├── static/                     # pure static assets (directly copied)（静态文件）
+├── test/
+│   └── unit/                   # unit tests
+│   │   ├── specs/              # test spec files
+│   │   ├── eslintrc            # config file for eslint with extra settings only for unit tests
+│   │   ├── index.js            # test build entry file
+│   │   ├── jest.conf.js        # Config file when using Jest for unit tests
+│   │   └── karma.conf.js       # test runner config file when using Karma for unit tests
+│   │   ├── setup.js            # file that runs before Jest runs your unit tests
+│   └── e2e/                    # e2e tests
+│   │   ├── specs/              # test spec files
+│   │   ├── custom-assertions/  # custom assertions for e2e tests
+│   │   ├── runner.js           # test runner script
+│   │   └── nightwatch.conf.js  # test runner config file
+├── .babelrc                    # babel config
+├── .editorconfig               # indentation, spaces/tabs and similar settings for your editor
+├── .eslintrc.js                # eslint config
+├── .eslintignore               # eslint ignore rules
+├── .gitignore                  # sensible defaults for gitignore
+├── .postcssrc.js               # postcss config
+├── index.html                  # index.html template
+├── package.json                # build scripts and dependencies
+└── README.md                   # Default README file
+</code></pre><p>从package.json的入口开始分析</p>
+<pre><code>  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;webpack-dev-server --inline --progress --config build/webpack.dev.conf.js&quot;,
+    &quot;start&quot;: &quot;npm run dev&quot;,
+    &quot;lint&quot;: &quot;eslint --ext .js,.vue src&quot;,
+    &quot;build&quot;: &quot;node build/build.js&quot;
+  },
+</code></pre><p>项目运行是通过命令”npm run dev/npm run start”开始，这个命令实际上是执行的图中”dev”所对应的指令，即执行”webpack.dev.conf.js”文件。</p>
+<p>“webpack.dev.conf.js”这个文件首先引入了所需依赖，其中utils是一些工具方法，merge是合并配置文件工具，baseWebpackConfig是开发和运行时共享的webpack配置文件。<br>通过devWebpackConfig定义了开发时的webpack配置（与base合并而来），</p>
+<p>“webpack.base.conf.js”是基本的webpack设置，定义了出入口文件位置以及别名（alias）、加载器（loader）等。</p>
+<pre><code>module.exports = {
+  context: path.resolve(__dirname, &#39;../&#39;),
+  entry: {
+    app: &#39;./src/main.js&#39;
+  },
+  output: {
+    path: config.build.assetsRoot,
+    filename: &#39;[name].js&#39;,
+    publicPath: process.env.NODE_ENV === &#39;production&#39;
+      ? config.build.assetsPublicPath
+      : config.dev.assetsPublicPath
+  },
+  resolve: {
+    extensions: [&#39;.js&#39;, &#39;.vue&#39;, &#39;.json&#39;],
+    alias: {
+      &#39;vue$&#39;: &#39;vue/dist/vue.esm.js&#39;,
+      &#39;@&#39;: resolve(&#39;src&#39;),
+    }
+  },
+</code></pre><p>在config/index.js中</p>
+<pre><code>module.exports = {
+  dev: {
+
+    // Paths
+    assetsSubDirectory: &#39;static&#39;, //资源文件
+    assetsPublicPath: &#39;/&#39;, //根目录
+    proxyTable: {
+      &#39;/api&#39;: &#39;http://localhost:3000/&#39;  
+    }, //代理，解决跨域问题
+
+    host: &#39;0.0.0.0&#39;, 
+    port: 8080, 
+    autoOpenBrowser: false,
+    errorOverlay: true,
+    notifyOnErrors: true,
+    poll: false,
+    useEslint: true,
+    showEslintErrorsInOverlay: false,
+    cacheBusting: true,
+    cssSourceMap: true
+  },
+</code></pre><h2 id="webpack打包原理"><a href="#webpack打包原理" class="headerlink" title="webpack打包原理"></a>webpack打包原理</h2><p>webpack中每个模块有一个唯一的id，是从0开始递增的。整个打包后的app.js是一个立即执行的匿名函数。参数则为一个数组。数组的每一项都为个function。function的内容则为每个模块的内容，并按照require的顺序排列。</p>
+<pre><code>// webpack.config.js
+module.exports = {
+  entry:&#39;./a.js&#39;,
+  output:{
+    filename:&#39;bundle.js&#39;
+  }
+};
+</code></pre><pre><code>// a.js
+var b = require(&#39;./b.js&#39;);
+
+console.log(&#39;a&#39;);
+
+b.b1();
+</code></pre><pre><code>// b.js
+exports.b1 = function () {
+  console.log(&#39;b1&#39;)
+};
+
+exports.b2 = function () {
+  console.log(&#39;b2&#39;)
+};
+</code></pre><pre><code>// bundle.js
+/******/ (function(modules) { // webpackBootstrap
+/******/    // The module cache
+/******/    var installedModules = {};
+
+/******/    // The require function
+/******/    function __webpack_require__(moduleId) {
+
+/******/        // Check if module is in cache
+/******/        if(installedModules[moduleId])
+/******/            return installedModules[moduleId].exports;
+
+/******/        // Create a new module (and put it into the cache)
+/******/        var module = installedModules[moduleId] = {
+/******/            exports: {},
+/******/            id: moduleId,
+/******/            loaded: false
+/******/        };
+
+/******/        // Execute the module function
+/******/        modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/        // Flag the module as loaded
+/******/        module.loaded = true;
+
+/******/        // Return the exports of the module
+/******/        return module.exports;
+/******/    }
+
+
+/******/    // expose the modules object (__webpack_modules__)
+/******/    __webpack_require__.m = modules;
+
+/******/    // expose the module cache
+/******/    __webpack_require__.c = installedModules;
+
+/******/    // __webpack_public_path__
+/******/    __webpack_require__.p = &quot;&quot;;
+
+/******/    // Load entry module and return exports
+/******/    return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+    var b = __webpack_require__(1);
+
+    console.log(&#39;a&#39;);
+
+    b.b1();
+
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+    exports.b1 = function () {
+      console.log(&#39;b1&#39;)
+    };
+
+    exports.b2 = function () {
+      console.log(&#39;b2&#39;)
+    };
+
+/***/ }
+/******/ ]);
+</code></pre><p>webpack使用了babel把import转换成了require。并且Webpack 2 将增加对 ES6 模块的原生支持并且混用 ES6、AMD 和 CommonJS 模块。这意味着 Webpack 现在可以识别 import 和 export 了，不需要先把它们转换成 CommonJS 模块的格式。</p>
+<p>总结webpack打包的流程如下：</p>
+<ol>
+<li>读取文件分析模块依赖</li>
+<li>对模块进行解析执行(深度遍历)</li>
+<li>针对不同的模块使用相应的loader</li>
+<li>编译模块，生成抽象语法树AST。</li>
+<li>循环遍历AST树，拼接输出js。</li>
+</ol>
+<h1 id="Vue项目分析"><a href="#Vue项目分析" class="headerlink" title="Vue项目分析"></a>Vue项目分析</h1><h2 id="主要文件设置"><a href="#主要文件设置" class="headerlink" title="主要文件设置"></a>主要文件设置</h2><p>main.js是项目的入口，webpack通过识别模块依赖来打包代码。<br>index.html是项目模板，挂载了整个项目的根组件App.vue。</p>
+<p>在main.js中定义组件App以及路由：</p>
+<pre><code>new Vue({
+  el: &#39;#app&#39;,
+  router,
+  components: { App },
+  template: &#39;&lt;App/&gt;&#39;
+})
+</code></pre>
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/10/20/interview/" data-toggle="tooltip" data-placement="top"
+                           title="常见面试问题总结（js）">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack相关"><span class="toc-text">webpack相关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack配置分析"><span class="toc-text">webpack配置分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack打包原理"><span class="toc-text">webpack打包原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue项目分析"><span class="toc-text">Vue项目分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#主要文件设置"><span class="toc-text">主要文件设置</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Vue"
+                           title="Vue">Vue</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/zhaoangus">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zhaoangus">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Angus 2018
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://zhaoangus.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="/images/avatar.png">
+</body>
+
+</html>
