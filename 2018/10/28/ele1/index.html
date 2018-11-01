@@ -458,11 +458,50 @@ position: relative
  transform: scaleY(0.5)
 </code></pre></li>
 <li>border-image<br>把border设置在边框的底部，所以使用的图片是2px高，上部的1px颜色为透明，下部的1px使用视觉规定的border的颜色。<pre><code>.border-bottom-1px
-   border-width: 0 0 1px 0
-   -webkit-border-image: url(linenew.png) 0 0 2 0 stretch
-   border-image: url(linenew.png) 0 0 2 0 stretch
+ border-width: 0 0 1px 0
+ -webkit-border-image: url(linenew.png) 0 0 2 0 stretch
+ border-image: url(linenew.png) 0 0 2 0 stretch
 </code></pre></li>
 </ol>
+<h2 id="stylus"><a href="#stylus" class="headerlink" title="stylus"></a>stylus</h2><p>在 stylus 中可以使用变量、函数、判断、循环等操作。<br>&amp;.表示父级的引用。</p>
+<h2 id="keepalive"><a href="#keepalive" class="headerlink" title="keepalive"></a>keepalive</h2><p>keep-alive 是 Vue 内置的一个组件，可以使被包含的组件保留状态，或避免重新渲染。</p>
+<h3 id="props"><a href="#props" class="headerlink" title="props"></a>props</h3><ol>
+<li>include-字符串或正则表达，只有匹配的组件会被缓存</li>
+<li>exclude - 字符串或正则表达式，任何匹配的组件都不会被缓存<pre><code>&lt;keep-alive include=&quot;a&quot;&gt;
+&lt;component&gt;
+ &lt;!-- name 为 a 的组件将被缓存！ --&gt;
+&lt;/component&gt;
+&lt;/keep-alive&gt;可以保留它的状态或避免重新渲染
+</code></pre></li>
+</ol>
+<h3 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h3><p>vue-router中的某个组件缓存</p>
+<ol>
+<li>使用 include/exclude</li>
+<li>增加 router.meta 属性</li>
+</ol>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>keep-alive有两个生命周期：</p>
+<ol>
+<li>activated: keep-alive组件激活时调用</li>
+<li>deactivated: keep-alive组件停用时调用</li>
+</ol>
+<p>因为keep-alive会将组件保存在内存中，并不会销毁以及重新创建，所以不会重新调用组件的created等方法，需要用activated与deactivated这两个生命钩子来得知当前组件是否处于活动状态。</p>
+<blockquote>
+<p>Vue.js内部将DOM节点抽象成了一个个的VNode节点,也就是以JavaScript对象为节点的虚拟DOM树，VNode节点模拟真实DOM，可以对这颗抽象树进行创建节点、删除节点以及修改节点等操作。修改以后经过diff算法得出一些需要修改的最小单位，再将这些小单位的视图进行更新。这样做减少了很多不需要的DOM操作，大大提高了性能。</p>
+</blockquote>
+<p>所以，keep-alive的缓存也是基于VNode节点的而不是直接存储DOM结构。</p>
+<p>created钩子会创建一个cache对象，用来作为缓存容器，保存vnode节点。</p>
+<pre><code>created () {
+    /* 缓存对象 */
+    this.cache = Object.create(null)
+},
+</code></pre><p>destroyed钩子则在组件被销毁的时候清除cache缓存中的所有组件实例。</p>
+<pre><code>destroyed () {
+    for (const key in this.cache) {
+        pruneCacheEntry(this.cache[key])
+    }
+},
+</code></pre><p>用watch来监听pruneCache与pruneCache这两个属性的改变，在改变的时候修改cache缓存中的缓存数据。</p>
+<p><strong>其实就是将需要缓存的VNode节点保存在this.cache中／在render时,如果VNode的name符合在缓存条件（可以用include以及exclude控制），则会从this.cache中取出之前缓存的VNode实例进行渲染。</strong></p>
 
                 <hr>
                 
@@ -496,7 +535,7 @@ position: relative
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack相关"><span class="toc-text">webpack相关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack配置分析"><span class="toc-text">webpack配置分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack打包原理"><span class="toc-text">webpack打包原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue项目分析"><span class="toc-text">Vue项目分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#axios"><span class="toc-text">axios</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flex布局"><span class="toc-text">flex布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#border-1px"><span class="toc-text">border-1px</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#物理像素（设备像素）-amp-逻辑像素（CSS像素）"><span class="toc-text">物理像素（设备像素）&amp; 逻辑像素（CSS像素）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rem和em"><span class="toc-text">rem和em</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1px实现："><span class="toc-text">1px实现：</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#webpack相关"><span class="toc-text">webpack相关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack配置分析"><span class="toc-text">webpack配置分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack打包原理"><span class="toc-text">webpack打包原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue项目分析"><span class="toc-text">Vue项目分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#axios"><span class="toc-text">axios</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flex布局"><span class="toc-text">flex布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#border-1px"><span class="toc-text">border-1px</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#物理像素（设备像素）-amp-逻辑像素（CSS像素）"><span class="toc-text">物理像素（设备像素）&amp; 逻辑像素（CSS像素）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rem和em"><span class="toc-text">rem和em</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1px实现："><span class="toc-text">1px实现：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stylus"><span class="toc-text">stylus</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#keepalive"><span class="toc-text">keepalive</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#props"><span class="toc-text">props</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vue-router"><span class="toc-text">vue-router</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-text">原理</span></a></li></ol></li></ol></li></ol>
                 </div>
             </div>
         </div>

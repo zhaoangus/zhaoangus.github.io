@@ -411,7 +411,22 @@ let Arr = [4, 6, 8, 5, 9, 1, 2, 5, 3, 2];
 heapSort(Arr);
 alert(Arr);
 </code></pre><h1 id="全排列"><a href="#全排列" class="headerlink" title="全排列"></a>全排列</h1><p>递归算法</p>
-
+<pre><code>function permutate(str) {
+    var result=[];
+    if(str.length==1){
+        return [str];  
+    }else{
+        var preResult=permutate(str.slice(1));
+        for (var j = 0; j &lt; preResult.length; j++) {
+            for (var k = 0; k &lt; preResult[j].length+1; k++) {
+                var temp=preResult[j].slice(0,k)+str[0]+preResult[j].slice(k);              
+                result.push(temp);              
+            }
+        }
+    return result; 
+    }  
+}
+</code></pre>
                 <hr>
                 
 
