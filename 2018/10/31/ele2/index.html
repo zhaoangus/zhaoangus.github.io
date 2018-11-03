@@ -183,7 +183,51 @@
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
                 <p>饿了么项目github源码地址：<a href="https://github.com/zhaoangus/ele_demo" target="_blank" rel="noopener">饿了么源码</a></p>
-<h1 id="Vue项目分析"><a href="#Vue项目分析" class="headerlink" title="Vue项目分析"></a>Vue项目分析</h1><p>## </p>
+<h1 id="Vue项目分析"><a href="#Vue项目分析" class="headerlink" title="Vue项目分析"></a>Vue项目分析</h1><h2 id="sticky-footer"><a href="#sticky-footer" class="headerlink" title="sticky footer"></a>sticky footer</h2><p>指的是一种网页效果：如果页面内容不足够长时，页脚固定在浏览器窗口的底部；如果内容足够长时，页脚固定在页面的最底部。但如果网页内容不够长，置底的页脚就会保持在浏览器窗口底部。<br>方法：</p>
+<ol>
+<li>将内容部分的底部外边距设为负数<br>把内容部分最小高度设为100%，再利用内容部分的负底部外边距值来达到当高度不满时，页脚保持在窗口底部，当高度超出则随之推出的效果。</li>
+<li>将页脚的顶部外边距设为负数<pre><code>&lt;body&gt;
+&lt;div class=&quot;wrapper&quot;&gt;
+ content
+ &lt;div class=&quot;push&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;footer class=&quot;footer&quot;&gt;&lt;/footer&gt;
+&lt;/body&gt;
+html, body {
+height: 100%;
+margin: 0;
+}
+.wrapper {
+min-height: 100%;
+margin-bottom: -50px;
+}
+.footer, push {
+height: 50px
+}
+</code></pre></li>
+</ol>
+<h2 id="refs"><a href="#refs" class="headerlink" title="refs"></a>refs</h2><ol>
+<li>vm.$refs<br>是一个对象，包含所有已注册过ref的子组件。</li>
+<li>ref<br>是一个string，当v-for用于元素或组件时，引用信息是包含dom节点或组件实例的数组。</li>
+</ol>
+<p>ref作为渲染结果被创建，<code>$refs</code>也不是响应式的。</p>
+<h2 id="better-scroll"><a href="#better-scroll" class="headerlink" title="better-scroll"></a>better-scroll</h2><p>better-scroll基于iscroll实现，</p>
+<pre><code>&lt;div class=&quot;wrapper&quot;&gt;
+  &lt;ul class=&quot;content&quot;&gt;
+    &lt;li&gt;...&lt;/li&gt;
+    &lt;li&gt;...&lt;/li&gt;
+    ...
+  &lt;/ul&gt;
+  &lt;!-- 这里可以放一些其它的 DOM，但不会影响滚动 --&gt;
+&lt;/div&gt;
+</code></pre><p>定义在wrapper上，content实现滚动。content必须是第一个子元素。</p>
+<p>API:</p>
+<ol>
+<li>click<br>类型：Boolean<br>默认值：false<br>作用：better-scroll 默认会阻止浏览器的原生 click 事件。当设置为 true，better-scroll 会派发一个 click 事件，会给派发的 event 参数加一个私有属性 _constructed，值为 true。<br>在使用时可以利用这个_constructed属性来识别点击事件。</li>
+<li>bounce<br>类型：Boolean | Object<br>默认值：true<br>作用：当滚动超过边缘的时候会有一小段回弹动画。设置为 true 则开启动画。</li>
+<li>stopPropagation<br>类型：Boolean<br>默认值：false<br>作用：是否阻止事件冒泡。多用在嵌套 scroll 的场景或者组件嵌套的场景。</li>
+</ol>
+<h2 id="一些tips"><a href="#一些tips" class="headerlink" title="一些tips"></a>一些tips</h2><p>@click.stop.prevent<br>同时组织冒泡和默认事件</p>
 
                 <hr>
                 
@@ -217,7 +261,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue项目分析"><span class="toc-text">Vue项目分析</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue项目分析"><span class="toc-text">Vue项目分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sticky-footer"><span class="toc-text">sticky footer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#refs"><span class="toc-text">refs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#better-scroll"><span class="toc-text">better-scroll</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些tips"><span class="toc-text">一些tips</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
