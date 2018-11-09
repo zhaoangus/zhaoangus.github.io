@@ -227,7 +227,26 @@ height: 50px
 <li>bounce<br>类型：Boolean | Object<br>默认值：true<br>作用：当滚动超过边缘的时候会有一小段回弹动画。设置为 true 则开启动画。</li>
 <li>stopPropagation<br>类型：Boolean<br>默认值：false<br>作用：是否阻止事件冒泡。多用在嵌套 scroll 的场景或者组件嵌套的场景。</li>
 </ol>
-<h2 id="一些tips"><a href="#一些tips" class="headerlink" title="一些tips"></a>一些tips</h2><p>@click.stop.prevent<br>同时组织冒泡和默认事件</p>
+<h2 id="一些tips"><a href="#一些tips" class="headerlink" title="一些tips"></a>一些tips</h2><ol>
+<li>@click.stop.prevent<br>同时组织冒泡和默认事件<blockquote>
+<p>使用修饰符时，顺序很重要；相应的代码会以同样的顺序产生。因此，用 <code>v-on:click.prevent.self</code> 会阻止所有的点击，而 <code>v-on:click.self.prevent</code> 只会阻止对元素自身的点击。</p>
+</blockquote>
+</li>
+<li>methods中的函数的方法this指向Vue实例</li>
+</ol>
+<h1 id="virtual-DOM"><a href="#virtual-DOM" class="headerlink" title="virtual DOM"></a>virtual DOM</h1><p>所有浏览器的引擎工作流程都差不多，大致分5步：创建DOM tree –&gt; 创建Style Rules -&gt; 构建Render tree -&gt; 布局Layout –&gt; 绘制Painting。</p>
+<p>假如一次操作中有10次更新DOM的动作，虚拟DOM不会立即操作DOM，而是将这10次更新的diff内容保存到本地的一个js对象中，最终将这个js对象一次性attach到DOM树上。</p>
+<h2 id="实现虚拟DOM"><a href="#实现虚拟DOM" class="headerlink" title="实现虚拟DOM"></a>实现虚拟DOM</h2><p>关键：element函数和render函数</p>
+<h2 id="Diff算法"><a href="#Diff算法" class="headerlink" title="Diff算法"></a>Diff算法</h2><p>复杂度：O(n)-&gt;仅仅平层比较<br>有以下4种情况：</p>
+<ol>
+<li>节点类型变了，称为replace，直接将旧节点卸载（componentWillUnmount）并装载新节点（componentWillMount）就行了</li>
+<li>节点属性或属性值变了，称为props，不会触发节点的卸载（componentWillUnmount）和装载（componentWillMount）动作。而是执行节点更新（shouldComponentUpdate到componentDidUpdate的一系列方法）</li>
+<li>节点文本变了，称为text，直接修改文字内容就行了</li>
+<li>移动、增加或删除子节点，称为reorder</li>
+</ol>
+<h2 id="映射为真实DOM"><a href="#映射为真实DOM" class="headerlink" title="映射为真实DOM"></a>映射为真实DOM</h2><p>深度遍历DOM将Diff的内容更新进去</p>
+<h1 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h1><h2 id="MVVM-amp-单向数据流"><a href="#MVVM-amp-单向数据流" class="headerlink" title="MVVM &amp; 单向数据流"></a>MVVM &amp; 单向数据流</h2><p>Mvvm 是指双向数据流，即 View-Model 之间的双向通信，由 ViewModel 作桥接。</p>
+<p>现在几乎所有框架都改为 getter/setter 劫持实现监听，任何数据的变化都可以在一个事件循环周期内完成。</p>
 
                 <hr>
                 
@@ -261,7 +280,7 @@ height: 50px
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue项目分析"><span class="toc-text">Vue项目分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sticky-footer"><span class="toc-text">sticky footer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#refs"><span class="toc-text">refs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#better-scroll"><span class="toc-text">better-scroll</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些tips"><span class="toc-text">一些tips</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue项目分析"><span class="toc-text">Vue项目分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sticky-footer"><span class="toc-text">sticky footer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#refs"><span class="toc-text">refs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#better-scroll"><span class="toc-text">better-scroll</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些tips"><span class="toc-text">一些tips</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#virtual-DOM"><span class="toc-text">virtual DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#实现虚拟DOM"><span class="toc-text">实现虚拟DOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Diff算法"><span class="toc-text">Diff算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#映射为真实DOM"><span class="toc-text">映射为真实DOM</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据流"><span class="toc-text">数据流</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM-amp-单向数据流"><span class="toc-text">MVVM &amp; 单向数据流</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>

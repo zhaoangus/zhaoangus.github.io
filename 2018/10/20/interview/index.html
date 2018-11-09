@@ -263,8 +263,15 @@ dedupe([1, 1, 2, 3]) // [1, 2, 3]
 </ol>
 <p>Set和Map都可以利用扩展运算符转化为数组结构。</p>
 <p>（待续）</p>
-<p># </p>
-
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><h1 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h1><h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>我们要记住两个概念（构造函数，实例）：<br>person1 和 person2 都是 构造函数 Person 的实例<br>一个公式：<br>实例的构造函数属性（constructor）指向构造函数。</p>
+<h2 id="原型对象"><a href="#原型对象" class="headerlink" title="原型对象"></a>原型对象</h2><p>定义一个对象（函数也是对象）时候，对象中都会包含一些预定义的属性。其中每个函数对象都有一个prototype 属性，这个属性指向函数的原型对象。<br><strong>每个对象都有 <strong>proto</strong> 属性，但只有函数对象才有 prototype 属性。</strong><br>原型对象就是 Person.prototype。</p>
+<blockquote>
+<p>在默认情况下，所有的原型对象都会自动获得一个 constructor（构造函数）属性，这个属性（是一个指针）指向 prototype 属性所在的函数（Person）。<br><code>Person.prototype.constructor == Person</code><br><strong>结论：原型对象（Person.prototype）是 构造函数（Person）的一个实例。(和普通实例一样都有constructor属性)</strong></p>
+</blockquote>
+<h2 id="proto"><a href="#proto" class="headerlink" title="proto"></a><strong>proto</strong></h2><pre><code>Person.prototype.constructor == Person;
+person1.__proto__ == Person.prototype;
+person1.constructor == Person;
+</code></pre><h2 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h2>
                 <hr>
                 
 
@@ -297,7 +304,7 @@ dedupe([1, 1, 2, 3]) // [1, 2, 3]
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#es6新特性"><span class="toc-text">es6新特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#块级作用域"><span class="toc-text">块级作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本类型的扩展"><span class="toc-text">基本类型的扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于函数"><span class="toc-text">关于函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象"><span class="toc-text">创建对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set与Map"><span class="toc-text">Set与Map</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#es6新特性"><span class="toc-text">es6新特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#块级作用域"><span class="toc-text">块级作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本类型的扩展"><span class="toc-text">基本类型的扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于函数"><span class="toc-text">关于函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象"><span class="toc-text">创建对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set与Map"><span class="toc-text">Set与Map</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#闭包"><span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#原型链"><span class="toc-text">原型链</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#构造函数"><span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原型对象"><span class="toc-text">原型对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proto"><span class="toc-text">proto</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构造器"><span class="toc-text">构造器</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>

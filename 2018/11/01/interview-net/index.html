@@ -195,11 +195,61 @@
 <li>浏览器读取http响应报文</li>
 <li>浏览器关闭连接</li>
 </ol>
+<h2 id="浏览器获得资源后到呈现页面的过程"><a href="#浏览器获得资源后到呈现页面的过程" class="headerlink" title="浏览器获得资源后到呈现页面的过程"></a>浏览器获得资源后到呈现页面的过程</h2><ol>
+<li>浏览器根据页面内容，生成DOM Tree。根据CSS内容，生成CSS Rule Tree(规则树)。调用JS执行引擎执行JS代码。</li>
+<li>根据DOM Tree和CSS Rule Tree生成Render Tree(呈现树)</li>
+<li>根据Render Tree渲染网页</li>
+</ol>
+<h2 id="http特性"><a href="#http特性" class="headerlink" title="http特性"></a>http特性</h2><ol>
+<li>http是不保存状态的协议</li>
+<li>请求只能从客户端开始。客户端不可以接收除响应以外的指令<br>对于一些实时监控的功能，常常用websocket来代替</li>
+<li>没有用户认证，任何人都可以发起请求</li>
+<li>通信使用的是明文</li>
+<li>无法证明报文完整性</li>
+<li>http持久连接和并行连接</li>
+</ol>
+<h2 id="http请求方法"><a href="#http请求方法" class="headerlink" title="http请求方法"></a>http请求方法</h2><h3 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h3><p>GET方法要求服务器将URL定位的资源放在响应报文的数据部分，回送给客户端。<br>使用GET方法时，请求参数和对应的值附加在URL后面，利用一个问号（“?”）代表URL的结尾与请求参数的开始，传递参数长度受限制。<br>例如，/index.jsp?id=100&amp;op=bind,这样通过GET方式传递的参数直接表示在地址中。</p>
+<ol>
+<li>各个数据之间用”&amp;”符号隔开。很显然，这种方式不适合传送私密数据。</li>
+<li>由于不同的浏览器对地址的字符限制也有所不同，一般最多只能识别1024个字符，所以如果需要传送大量数据的时候，也不适合使用GET方式。</li>
+</ol>
+<h3 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h3><p>POST方法将请求参数封装在HTTP请求数据中，以名称/值的形式出现，可以传输大量数据，这样POST方式对传送的数据大小没有限制，而且也不会显示在URL中。<br><strong>POST方法是把提交的数据放在HTTP包的Body中</strong>。</p>
+<h3 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h3><p>HEAD就像GET，只不过服务端接受到HEAD请求后只返回响应头，而不会发送响应内容。当我们只需要查看某个页面的状态的时候，使用HEAD是非常高效的，因为在传输的过程中省去了页面内容。</p>
+<h2 id="http请求的header"><a href="#http请求的header" class="headerlink" title="http请求的header"></a>http请求的header</h2><h3 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h3><ol>
+<li>Cache-control:用来指定Response-Request遵循的缓存机制。</li>
+<li>Pragma:防止页面被缓存。 Pragma: no-cache = Cache-Control:no-cache</li>
+</ol>
+<h3 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h3><ol>
+<li>Accept:浏览器端可以接受的媒体类型。</li>
+<li>Accept-Language</li>
+<li>Accept-Encoding</li>
+<li>User-Agent:告诉HTTP服务器，客户端使用的操作系统和浏览器的名称和版本。</li>
+</ol>
+<h3 id="Cookie-Login"><a href="#Cookie-Login" class="headerlink" title="Cookie/Login"></a>Cookie/Login</h3><ol>
+<li>Cookie</li>
+</ol>
+<h3 id="Entity"><a href="#Entity" class="headerlink" title="Entity"></a>Entity</h3><ol>
+<li>Content-Length</li>
+<li>Content-Type</li>
+</ol>
+<h3 id="Miscellaneous"><a href="#Miscellaneous" class="headerlink" title="Miscellaneous"></a>Miscellaneous</h3><ol>
+<li>Referer:提供了Request的上下文信息的服务器，告诉服务器我是从哪个链接过来的，比如从我主页上链接到一个朋友那里，他的服务器就能够从HTTP Referer中统计出每天有多少用户点击我主页上的链接访问他的网站。<br>例如: Referer:<a href="http://translate.google.cn/?hl=zh-cn&amp;tab=wT" target="_blank" rel="noopener">http://translate.google.cn/?hl=zh-cn&amp;tab=wT</a></li>
+</ol>
+<h3 id="Transport"><a href="#Transport" class="headerlink" title="Transport"></a>Transport</h3><ol>
+<li>Connection:keep-alive/close</li>
+<li>Host:请求报头域主要用于指定被请求资源的Internet主机和端口号，它通常从HTTP URL中提取出来的。</li>
+</ol>
+<h2 id="响应的状态码"><a href="#响应的状态码" class="headerlink" title="响应的状态码"></a>响应的状态码</h2><p>Response 消息中的第一行叫做状态行，由HTTP协议版本号，状态码，状态消息三部分组成。<br>HTTP/1.1中定义了5类状态码， 状态码由三位数字组成，第一个数字定义了响应的类别<br>1XX  提示信息 - 表示请求已被成功接收，继续处理<br>2XX  成功 - 表示请求已被成功接收，理解，接受<br>3XX  重定向 - 要完成请求必须进行更进一步的处理<br>4XX  客户端错误 -  请求有语法错误或请求无法实现<br>5XX  服务器端错误 -   服务器未能实现合法的请求 </p>
 
                 <hr>
                 
 
                 <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/11/07/vue-sourceCode/" data-toggle="tooltip" data-placement="top"
+                           title="Vue源码学习（1）">&larr; Previous Post</a>
+                    </li>
                     
                     
                     <li class="next">
@@ -223,7 +273,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#http请求"><span class="toc-text">http请求</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#从输入一个url到返回数据，发生了什么"><span class="toc-text">从输入一个url到返回数据，发生了什么</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#http请求"><span class="toc-text">http请求</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#从输入一个url到返回数据，发生了什么"><span class="toc-text">从输入一个url到返回数据，发生了什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器获得资源后到呈现页面的过程"><span class="toc-text">浏览器获得资源后到呈现页面的过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http特性"><span class="toc-text">http特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http请求方法"><span class="toc-text">http请求方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GET"><span class="toc-text">GET</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#POST"><span class="toc-text">POST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HEAD"><span class="toc-text">HEAD</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http请求的header"><span class="toc-text">http请求的header</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cache"><span class="toc-text">Cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Client"><span class="toc-text">Client</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie-Login"><span class="toc-text">Cookie/Login</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Entity"><span class="toc-text">Entity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Miscellaneous"><span class="toc-text">Miscellaneous</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Transport"><span class="toc-text">Transport</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应的状态码"><span class="toc-text">响应的状态码</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
