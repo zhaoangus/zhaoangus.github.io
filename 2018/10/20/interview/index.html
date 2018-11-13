@@ -271,7 +271,22 @@ dedupe([1, 1, 2, 3]) // [1, 2, 3]
 <h2 id="proto"><a href="#proto" class="headerlink" title="proto"></a><strong>proto</strong></h2><pre><code>Person.prototype.constructor == Person;
 person1.__proto__ == Person.prototype;
 person1.constructor == Person;
-</code></pre><h2 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h2>
+</code></pre><h2 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h2><p>obj 是构造函数（Object）的一个实例。所以：</p>
+<pre><code>obj.constructor === Object
+obj.__proto__ === Object.prototype
+</code></pre><h2 id="函数对象"><a href="#函数对象" class="headerlink" title="函数对象"></a>函数对象</h2><p><strong>所有函数对象的proto都指向Function.prototype，它是一个空函数（Empty function）</strong></p>
+<pre><code>Number.__proto__ === Function.prototype  // true
+Number.constructor == Function //true
+</code></pre><p><strong>所有的构造器都来自于 Function.prototype，甚至包括根构造器Object及Function自身。所有构造器都继承了·Function.prototype·的属性及方法。如length、call、apply、bind</strong></p>
+<pre><code>Object.prototype.__proto__ === null // true
+</code></pre><h2 id="Prototype"><a href="#Prototype" class="headerlink" title="Prototype"></a>Prototype</h2><blockquote>
+<p>对于 ECMAScript 中的引用类型而言，prototype 是保存着它们所有实例方法的真正所在。换句话所说，诸如 toString()和 valuseOf() 等方法实际上都保存在 prototype 名下，只不过是通过各自对象的实例访问罢了。</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>所有对象的 <strong>proto</strong> 都指向其构造器的 prototype</li>
+<li>所有对象的constructor指向其构造函数（构造器）</li>
+</ol>
+
                 <hr>
                 
 
@@ -304,7 +319,7 @@ person1.constructor == Person;
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#es6新特性"><span class="toc-text">es6新特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#块级作用域"><span class="toc-text">块级作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本类型的扩展"><span class="toc-text">基本类型的扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于函数"><span class="toc-text">关于函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象"><span class="toc-text">创建对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set与Map"><span class="toc-text">Set与Map</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#闭包"><span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#原型链"><span class="toc-text">原型链</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#构造函数"><span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原型对象"><span class="toc-text">原型对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proto"><span class="toc-text">proto</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构造器"><span class="toc-text">构造器</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#es6新特性"><span class="toc-text">es6新特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#块级作用域"><span class="toc-text">块级作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本类型的扩展"><span class="toc-text">基本类型的扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于函数"><span class="toc-text">关于函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象"><span class="toc-text">创建对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set与Map"><span class="toc-text">Set与Map</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#闭包"><span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#原型链"><span class="toc-text">原型链</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#构造函数"><span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原型对象"><span class="toc-text">原型对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proto"><span class="toc-text">proto</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构造器"><span class="toc-text">构造器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数对象"><span class="toc-text">函数对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prototype"><span class="toc-text">Prototype</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
