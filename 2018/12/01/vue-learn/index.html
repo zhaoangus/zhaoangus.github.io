@@ -20,11 +20,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Tags｜Angus&#39;s blog
+        深入学习Vue｜Angus&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://zhaoangus.github.io/Tags/">
+    <link rel="canonical" href="http://zhaoangus.github.io/2018/12/01/vue-learn/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -49,7 +49,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -129,191 +129,164 @@
 </script>
 
 <!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="">
+
+
 <style>
-    .intro-header .site-heading {
-        margin: 50px;
-    }
     
     header.intro-header {
         background-image: url('')
     }
+
     
 </style>
 
-<!-- Page Header -->
 <header class="intro-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading text-center">
-                    <h1>Tags</h1>
-                    <span class="subheading"></span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>深入学习Vue</h1>
+                    
+                    <span class="meta">
+                         作者 Zhao Angus
+                        <span>
+                          日期 2018-12-01
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Vue"
+                           title="Vue">Vue</a>
+                        
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            深入学习Vue
+        </span>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- 标签云 -->
-            <div id='tag_cloud' class="tags">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="Vue实例"><a href="#Vue实例" class="headerlink" title="Vue实例"></a>Vue实例</h1><h2 id="Vue实例上的属性"><a href="#Vue实例上的属性" class="headerlink" title="Vue实例上的属性"></a>Vue实例上的属性</h2><pre><code>const app = new Vue({
+  el: &#39;#root&#39;,
+  template: &#39;&lt;div&gt;{{text}}&lt;/div&gt;&#39;,
+  data: {
+    text: 0
+  }
+})
+</code></pre><ol>
+<li><code>app.$mount(&#39;#root&#39;)</code>也就是相当于<code>el:&#39;#root&#39;</code></li>
+<li><code>app.$data.text === app.text</code></li>
+<li><code>app.$props</code></li>
+<li><code>app.$options</code>是传入new Vue中的对象与默认值合并得到的</li>
+<li><pre><code>app.$options.render = (h) =&gt; {
+return h(&#39;div&#39;, {}, &#39;new render function&#39;)
+}
+</code></pre></li>
+<li><code>app.$root === app</code></li>
+<li><code>app.$children</code>组件子节点</li>
+<li><code>app.$slots</code>  <code>app.$scopedSlots</code></li>
+<li><code>app.$refs</code>节点/组件的引用</li>
+<li><code>app.$isServer</code>服务端渲染时使用</li>
+</ol>
+<h2 id="实例上的方法"><a href="#实例上的方法" class="headerlink" title="实例上的方法"></a>实例上的方法</h2><ol>
+<li><code>app.$watch()</code>与在组件上声明watch相同</li>
+</ol>
+<pre><code>const unwatch = app.$watch(&#39;text&#39;, (newText, oldText) {
+  ...
+})
+unwatch() //注销watch
+</code></pre><ol start="2">
+<li><code>app.$on()</code>与<code>app.$emit</code></li>
+<li><code>app.$forceUpdate()</code>强制组件重新渲染</li>
+<li><code>app.$set()</code>与<code>app.$delete()</code></li>
+<li><code>app.$nextTick(callback)</code>有一个异步队列，在一次渲染</li>
+</ol>
+
+                <hr>
                 
-                <a href="#css" title="css" rel="1">css</a>
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/11/07/vue-sourceCode/" data-toggle="tooltip" data-placement="top"
+                           title="Vue源码学习（1）">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
                 
-                <a href="#Vue" title="Vue" rel="5">Vue</a>
+
                 
-                <a href="#面试" title="面试" rel="2">面试</a>
+
+
+                <!--加入新的评论系统-->
                 
-                <a href="#javascript" title="javascript" rel="1">javascript</a>
+
                 
-                <a href="#算法" title="算法" rel="1">算法</a>
-                
+
             </div>
 
-            <!-- 标签列表 -->
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="css">
-                    <span class="tag-text">css</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2018/08/19/css1/">
-                        <h2 class="post-title">
-                            css中的居中和分栏问题总结
-                        </h2>
-                        
-                    </a>
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue实例"><span class="toc-text">Vue实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue实例上的属性"><span class="toc-text">Vue实例上的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例上的方法"><span class="toc-text">实例上的方法</span></a></li></ol></li></ol>
                 </div>
-                <hr>
-                
             </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="Vue">
-                    <span class="tag-text">Vue</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2018/10/28/ele1/">
-                        <h2 class="post-title">
-                            饿了么项目的一些总结（1）
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/12/01/vue-learn/">
-                        <h2 class="post-title">
-                            深入学习Vue
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/10/31/ele2/">
-                        <h2 class="post-title">
-                            饿了么项目的一些总结（2）
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/11/01/interview-net/">
-                        <h2 class="post-title">
-                            常见面试问题总结（网络）
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/11/07/vue-sourceCode/">
-                        <h2 class="post-title">
-                            Vue源码学习（1）
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="面试">
-                    <span class="tag-text">面试</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2018/10/31/interview-css/">
-                        <h2 class="post-title">
-                            常见面试问题总结（css）
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-                <div class="post-preview">
-                    <a href="/2018/10/20/interview/">
-                        <h2 class="post-title">
-                            常见面试问题总结（js）
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="javascript">
-                    <span class="tag-text">javascript</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2018/08/05/js1/">
-                        <h2 class="post-title">
-                            js中高阶函数使用的一点心得
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="算法">
-                    <span class="tag-text">算法</span>
-                </span>
-                
-                <div class="post-preview">
-                    <a href="/2018/09/02/js2/">
-                        <h2 class="post-title">
-                            常见算法总结
-                        </h2>
-                        
-                    </a>
-                </div>
-                <hr>
-                
-            </div>
-            
-
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Vue"
+                           title="Vue">Vue</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
     </div>
-</div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->
