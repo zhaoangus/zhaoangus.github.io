@@ -217,11 +217,46 @@ unwatch() //注销watch
 <li><code>app.$set()</code>与<code>app.$delete()</code></li>
 <li><code>app.$nextTick(callback)</code>有一个异步队列，在一次渲染</li>
 </ol>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><ol>
+<li><code>beforeCreate()</code></li>
+<li><code>created()</code></li>
+<li><code>beforeMount()</code>  app.$el为html中那个模板</li>
+<li><code>mounted()</code>  app.$el为实际渲染的节点</li>
+<li><code>beforeUpdate()</code></li>
+<li><code>updated()</code></li>
+<li><code>activated()</code></li>
+<li><code>deactivated()</code></li>
+<li><code>beforeDestroy()</code></li>
+<li><code>destroyed()</code></li>
+</ol>
+<p><strong>服务端渲染时不会调用3和4</strong></p>
+<h2 id="原生指令"><a href="#原生指令" class="headerlink" title="原生指令"></a>原生指令</h2><ol>
+<li>v-text</li>
+<li>v-html</li>
+<li>v-show</li>
+<li>v-if</li>
+<li>v-for</li>
+<li>v-model</li>
+<li>v-pre 写什么显示什么</li>
+<li>v-once</li>
+</ol>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><ol>
+<li>extend</li>
+<li>$parent 只有在new Vue时才能指定，模板形式无法修改。</li>
+<li>slot slot可以设定作用域<code>slot-scoped=&quot;props&quot;</code>，用于传递子组件里的value到插槽上</li>
+<li>ref 在组件上使用，返回一个vue对象；在原生标签上使用，返回这个标签对象。</li>
+<li>provide与inject 跨层级的父子关系提供了一个上下文关系</li>
+</ol>
 
                 <hr>
                 
 
                 <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/12/04/wechat/" data-toggle="tooltip" data-placement="top"
+                           title="mpvue开发小程序踩坑">&larr; Previous Post</a>
+                    </li>
                     
                     
                     <li class="next">
@@ -245,7 +280,7 @@ unwatch() //注销watch
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue实例"><span class="toc-text">Vue实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue实例上的属性"><span class="toc-text">Vue实例上的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例上的方法"><span class="toc-text">实例上的方法</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue实例"><span class="toc-text">Vue实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue实例上的属性"><span class="toc-text">Vue实例上的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例上的方法"><span class="toc-text">实例上的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生命周期"><span class="toc-text">生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原生指令"><span class="toc-text">原生指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组件"><span class="toc-text">组件</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
