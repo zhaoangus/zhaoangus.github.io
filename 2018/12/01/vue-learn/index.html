@@ -247,6 +247,12 @@ unwatch() //注销watch
 <li>ref 在组件上使用，返回一个vue对象；在原生标签上使用，返回这个标签对象。</li>
 <li>provide与inject 跨层级的父子关系提供了一个上下文关系</li>
 </ol>
+<h2 id="Vue-router"><a href="#Vue-router" class="headerlink" title="Vue-router"></a>Vue-router</h2><p>用于服务端渲染时，vue-router和vuex初始化时要返回一个函数，防止内存溢出</p>
+<pre><code>export default () =&gt; {...}
+</code></pre><h2 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h2><h2 id="服务端渲染"><a href="#服务端渲染" class="headerlink" title="服务端渲染"></a>服务端渲染</h2><ol>
+<li>纯前端渲染 =&gt; webpack dev server 8000端口</li>
+<li>服务端渲染 =&gt; nodejs/webpack server compile/server bundle server xxxx端口 =&gt; 不包含script中的js代码，只有html</li>
+</ol>
 
                 <hr>
                 
@@ -280,7 +286,7 @@ unwatch() //注销watch
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue实例"><span class="toc-text">Vue实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue实例上的属性"><span class="toc-text">Vue实例上的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例上的方法"><span class="toc-text">实例上的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生命周期"><span class="toc-text">生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原生指令"><span class="toc-text">原生指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组件"><span class="toc-text">组件</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue实例"><span class="toc-text">Vue实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue实例上的属性"><span class="toc-text">Vue实例上的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例上的方法"><span class="toc-text">实例上的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生命周期"><span class="toc-text">生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原生指令"><span class="toc-text">原生指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组件"><span class="toc-text">组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-router"><span class="toc-text">Vue-router</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vuex"><span class="toc-text">Vuex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务端渲染"><span class="toc-text">服务端渲染</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>

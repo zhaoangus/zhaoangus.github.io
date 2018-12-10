@@ -326,7 +326,22 @@ require([&quot;module&quot;, &quot;../file&quot;], function(module, file) { /* .
   exports.doSomething = ...
   module.exports = ...
 })
-</code></pre>
+</code></pre><h2 id="async与await"><a href="#async与await" class="headerlink" title="async与await"></a>async与await</h2><p>async函数封装了一个Promise对象返回。</p>
+<pre><code>async function helloAsync(){
+
+      return &quot;helloAsync&quot;;
+
+  }
+  helloAsync().then(v=&gt;{
+     console.log(v);//&quot;helloAsync&quot;
+  })
+
+</code></pre><p>await在async函数中使用，await会阻塞程序的运行，直到等待的Promise函数返回结果，await后面除了Promise对象，可以接字符串，布尔值，数值以及普通函数等。<br><strong>注意</strong></p>
+<ol>
+<li>对于Promise对象，await会阻塞主函数的执行，等待 Promise 对象 resolve，然后得到 resolve 的值，作为 await 表达式的运算结果，然后继续执行主函数接下来的代码。</li>
+<li>于非Promise对象，await等待函数或者直接量的返回，而不是等待其执行结果。</li>
+</ol>
+
                 <hr>
                 
 
@@ -359,7 +374,7 @@ require([&quot;module&quot;, &quot;../file&quot;], function(module, file) { /* .
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#es6新特性"><span class="toc-text">es6新特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#块级作用域"><span class="toc-text">块级作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本类型的扩展"><span class="toc-text">基本类型的扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于函数"><span class="toc-text">关于函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象"><span class="toc-text">创建对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set与Map"><span class="toc-text">Set与Map</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#闭包"><span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#原型链"><span class="toc-text">原型链</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#构造函数"><span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原型对象"><span class="toc-text">原型对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proto"><span class="toc-text">proto</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构造器"><span class="toc-text">构造器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数对象"><span class="toc-text">函数对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prototype"><span class="toc-text">Prototype</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#commonJS"><span class="toc-text">commonJS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AMD规范"><span class="toc-text">AMD规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMD规范"><span class="toc-text">CMD规范</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#es6新特性"><span class="toc-text">es6新特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#块级作用域"><span class="toc-text">块级作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本类型的扩展"><span class="toc-text">基本类型的扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于函数"><span class="toc-text">关于函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象"><span class="toc-text">创建对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set与Map"><span class="toc-text">Set与Map</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#闭包"><span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#原型链"><span class="toc-text">原型链</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#构造函数"><span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原型对象"><span class="toc-text">原型对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proto"><span class="toc-text">proto</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构造器"><span class="toc-text">构造器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数对象"><span class="toc-text">函数对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prototype"><span class="toc-text">Prototype</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#commonJS"><span class="toc-text">commonJS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AMD规范"><span class="toc-text">AMD规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CMD规范"><span class="toc-text">CMD规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#async与await"><span class="toc-text">async与await</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
