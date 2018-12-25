@@ -184,9 +184,18 @@
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
                 <h1 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h1><h2 id="for-of"><a href="#for-of" class="headerlink" title="for-of"></a>for-of</h2><p><code>for-of</code>是es6中新增，得到的是一个可以保证顺序的迭代（与for以及for-in不同）。操作的对象具有一个<code>Symbol.iterator</code>属性，该属性被<code>for-of</code>使用。</p>
 <h2 id="内置迭代器"><a href="#内置迭代器" class="headerlink" title="内置迭代器"></a>内置迭代器</h2><p><code>String</code>,<code>Array</code>,<code>Map</code>,<code>Set</code>都内置迭代器。</p>
-<h2 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h2><p><code>var hello = &#39;world&#39;;
+<h2 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h2><pre><code>var hello = &#39;world&#39;;
 var [first, second, ...rest] = [...hello];
-console.log(first, second, rest); // w o [&quot;r&quot;,&quot;l&quot;,&quot;d&quot;]</code></p>
+console.log(first, second, rest); // w o [&quot;r&quot;,&quot;l&quot;,&quot;d&quot;]
+</code></pre><h2 id="generator函数"><a href="#generator函数" class="headerlink" title="generator函数"></a>generator函数</h2><p>它是一个可以暂时退出，并且稍后重新进入继续执行的函数。在多次的进入中，它的上下文（绑定的变量）是会被保存的。<code>generator</code>函数自身就是一个迭代器。</p>
+<h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p><code>new Promise( function(resolve, reject) {...} /* executor */  );</code></p>
+<h3 id="Promise对象有三种状态"><a href="#Promise对象有三种状态" class="headerlink" title="Promise对象有三种状态"></a>Promise对象有三种状态</h3><ol>
+<li>pending: 等待中，或者进行中，表示还没有得到结果</li>
+<li>resolved(Fulfilled): 已经完成，表示得到了我们想要的结果，可以继续往下执行</li>
+<li>rejected: 也表示得到结果，但是由于结果并非我们所愿，因此拒绝执行</li>
+</ol>
+<p>在Promise对象的构造函数中，将一个函数作为第一个参数。而这个函数，就是用来处理Promise的状态变化。</p>
+<h3 id="then"><a href="#then" class="headerlink" title="then"></a>then</h3><p>Promise对象中的then方法，可以接收构造函数中处理的状态变化，并分别对应执行。then方法有2个参数，第一个函数接收resolved状态的执行，第二个参数接收reject状态的执行。<br>then方法的执行结果也会返回一个Promise对象。</p>
 
                 <hr>
                 
@@ -215,7 +224,7 @@ console.log(first, second, rest); // w o [&quot;r&quot;,&quot;l&quot;,&quot;d&qu
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#迭代器"><span class="toc-text">迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#for-of"><span class="toc-text">for-of</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内置迭代器"><span class="toc-text">内置迭代器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#迭代器"><span class="toc-text">迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#for-of"><span class="toc-text">for-of</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内置迭代器"><span class="toc-text">内置迭代器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#generator函数"><span class="toc-text">generator函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Promise"><span class="toc-text">Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise对象有三种状态"><span class="toc-text">Promise对象有三种状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#then"><span class="toc-text">then</span></a></li></ol></li></ol></li></ol>
                 </div>
             </div>
         </div>

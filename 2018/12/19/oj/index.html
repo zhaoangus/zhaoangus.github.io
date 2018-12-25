@@ -183,6 +183,9 @@
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
                 <h1 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h1><h2 id="koa的post请求返回404错误"><a href="#koa的post请求返回404错误" class="headerlink" title="koa的post请求返回404错误"></a>koa的post请求返回404错误</h2><p>koa通过mongoose操作数据库，拿到前端post的数据，发现数据库操作成功，前端却返回404这个问题。<br><strong>解决</strong>：await返回一个res，在ctx.body = res.name…<br>await只会等待promise对象的返回结果。</p>
+<h2 id="mongodb"><a href="#mongodb" class="headerlink" title="mongodb"></a>mongodb</h2><ol>
+<li>使用mongoimport时如果导入的JSON是数组，需要加入–jsonArray命令。</li>
+</ol>
 
                 <hr>
                 
@@ -216,7 +219,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#踩坑"><span class="toc-text">踩坑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#koa的post请求返回404错误"><span class="toc-text">koa的post请求返回404错误</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#踩坑"><span class="toc-text">踩坑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#koa的post请求返回404错误"><span class="toc-text">koa的post请求返回404错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mongodb"><span class="toc-text">mongodb</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
