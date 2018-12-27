@@ -196,6 +196,24 @@ console.log(first, second, rest); // w o [&quot;r&quot;,&quot;l&quot;,&quot;d&qu
 </ol>
 <p>在Promise对象的构造函数中，将一个函数作为第一个参数。而这个函数，就是用来处理Promise的状态变化。</p>
 <h3 id="then"><a href="#then" class="headerlink" title="then"></a>then</h3><p>Promise对象中的then方法，可以接收构造函数中处理的状态变化，并分别对应执行。then方法有2个参数，第一个函数接收resolved状态的执行，第二个参数接收reject状态的执行。<br>then方法的执行结果也会返回一个Promise对象。</p>
+<p><code>then</code>方法可以链式调用。</p>
+<pre><code>p1
+  .then(step1)
+  .then(step2)
+  .then(step3)
+  .then(
+    console.log,
+    console.error
+  );
+</code></pre><p>上面代码中，p1后面有四个then，意味依次有四个回调函数。只要前一步的状态变为fulfilled，就会依次执行紧跟在后面的回调函数。</p>
+<p>最后一个then方法，回调函数是console.log和console.error，用法上有一点重要的区别。console.log只显示step3的返回值，而console.error可以显示p1、step1、step2、step3之中任意一个发生的错误。举例来说，如果step1的状态变为rejected，那么step2和step3都不会执行了（因为它们是resolved的回调函数）。Promise 开始寻找，接下来第一个为rejected的回调函数，在上面代码中是console.error。这就是说，Promise 对象的报错具有传递性。</p>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><ol>
+<li>Promise 的回调函数属于异步任务，会在同步任务之后执行，但在其他正常异步任务之前执行；</li>
+<li>Promise 在新建后立即执行，所以首先输出的是Promise。然后，then方法指定的回调函数，将在当前脚本所有同步任务执行完才会执行。<br><code>`</code><br>let promise = new Promise(function(resolve, reject) {<br>console.log(‘Promise’);<br>resolve();<br>});</li>
+</ol>
+<p>promise.then(function() {<br>  console.log(‘resolved.’);<br>});</p>
+<p>console.log(‘Hi!’);</p>
+<p>// Promise<br>// Hi!<br>// resolved<br><code>`</code></p>
 
                 <hr>
                 
@@ -224,7 +242,7 @@ console.log(first, second, rest); // w o [&quot;r&quot;,&quot;l&quot;,&quot;d&qu
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#迭代器"><span class="toc-text">迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#for-of"><span class="toc-text">for-of</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内置迭代器"><span class="toc-text">内置迭代器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#generator函数"><span class="toc-text">generator函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Promise"><span class="toc-text">Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise对象有三种状态"><span class="toc-text">Promise对象有三种状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#then"><span class="toc-text">then</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#迭代器"><span class="toc-text">迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#for-of"><span class="toc-text">for-of</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内置迭代器"><span class="toc-text">内置迭代器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#generator函数"><span class="toc-text">generator函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Promise"><span class="toc-text">Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise对象有三种状态"><span class="toc-text">Promise对象有三种状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#then"><span class="toc-text">then</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意点"><span class="toc-text">注意点</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
