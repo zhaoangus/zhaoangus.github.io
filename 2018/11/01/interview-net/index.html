@@ -240,6 +240,7 @@
 <li>Host:请求报头域主要用于指定被请求资源的Internet主机和端口号，它通常从HTTP URL中提取出来的。</li>
 </ol>
 <h2 id="响应的状态码"><a href="#响应的状态码" class="headerlink" title="响应的状态码"></a>响应的状态码</h2><p>Response 消息中的第一行叫做状态行，由HTTP协议版本号，状态码，状态消息三部分组成。<br>HTTP/1.1中定义了5类状态码， 状态码由三位数字组成，第一个数字定义了响应的类别<br>1XX  提示信息 - 表示请求已被成功接收，继续处理<br>2XX  成功 - 表示请求已被成功接收，理解，接受<br>3XX  重定向 - 要完成请求必须进行更进一步的处理<br>4XX  客户端错误 -  请求有语法错误或请求无法实现<br>5XX  服务器端错误 -   服务器未能实现合法的请求 </p>
+<p>200 请求成功<br>301 永久移动。请求的资源已被永久的移动到新URI，返回信息会包括新的URI，浏览器会自动定向到新URI。今后任何新的请求都应使用新的URI代替<br>304 未修改。所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。客户端通常会缓存访问过的资源，通过提供一个头信息指出客户端希望只返回在指定日期之后修改的资源<br>403 Forbidden 服务器理解请求客户端的请求，但是拒绝执行此请求<br>404 请求的资源（网页等）不存在<br>500 内部服务器错误<br>504 Gateway Time-out 充当网关或代理的服务器，未及时从远端服务器获取请求</p>
 
                 <hr>
                 
@@ -356,7 +357,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Angus 2018
+                    Copyright &copy; Angus 2019
                     <br>
                     <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
                     <br>

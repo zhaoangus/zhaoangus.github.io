@@ -214,6 +214,17 @@ console.log(first, second, rest); // w o [&quot;r&quot;,&quot;l&quot;,&quot;d&qu
 <p>promise.then(function() {<br>  console.log(‘resolved.’);<br>});</p>
 <p>console.log(‘Hi!’);</p>
 <p>// Promise<br>// Hi!<br>// resolved<br><code>`</code></p>
+<h1 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h1><h2 id="为什么有跨域"><a href="#为什么有跨域" class="headerlink" title="为什么有跨域"></a>为什么有跨域</h2><p>浏览器的同源策略导致了跨域。<br>同源策略限制了从同一个源加载的文档或脚本如何与来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的重要安全机制。</p>
+<h2 id="同源"><a href="#同源" class="headerlink" title="同源"></a>同源</h2><p>如果两个页面的协议，端口（如果有指定）和域名都相同，则两个页面具有相同的源。<br>注：IE未将端口号加入同源策略的组成部分中。</p>
+<h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><ol>
+<li>针对接口请求</li>
+<li>针对DOM的查询<br>对第一种，采用设置httpOnly使得无法通过js操作cookie</li>
+</ol>
+<h2 id="同源下接口请求的正确打开方式"><a href="#同源下接口请求的正确打开方式" class="headerlink" title="同源下接口请求的正确打开方式"></a>同源下接口请求的正确打开方式</h2><ol>
+<li>JSONP</li>
+<li>代理服务器</li>
+<li>CORS</li>
+</ol>
 
                 <hr>
                 
@@ -242,7 +253,7 @@ console.log(first, second, rest); // w o [&quot;r&quot;,&quot;l&quot;,&quot;d&qu
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#迭代器"><span class="toc-text">迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#for-of"><span class="toc-text">for-of</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内置迭代器"><span class="toc-text">内置迭代器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#generator函数"><span class="toc-text">generator函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Promise"><span class="toc-text">Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise对象有三种状态"><span class="toc-text">Promise对象有三种状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#then"><span class="toc-text">then</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意点"><span class="toc-text">注意点</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#迭代器"><span class="toc-text">迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#for-of"><span class="toc-text">for-of</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内置迭代器"><span class="toc-text">内置迭代器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#generator函数"><span class="toc-text">generator函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Promise"><span class="toc-text">Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise对象有三种状态"><span class="toc-text">Promise对象有三种状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#then"><span class="toc-text">then</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意点"><span class="toc-text">注意点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#跨域"><span class="toc-text">跨域</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么有跨域"><span class="toc-text">为什么有跨域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同源"><span class="toc-text">同源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同源策略"><span class="toc-text">同源策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同源下接口请求的正确打开方式"><span class="toc-text">同源下接口请求的正确打开方式</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
@@ -325,7 +336,7 @@ console.log(first, second, rest); // w o [&quot;r&quot;,&quot;l&quot;,&quot;d&qu
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Angus 2018
+                    Copyright &copy; Angus 2019
                     <br>
                     <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
                     <br>
