@@ -182,7 +182,94 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <h1 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h1><h1 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h1><h1 id="分栏问题"><a href="#分栏问题" class="headerlink" title="分栏问题"></a>分栏问题</h1><h2 id="两栏"><a href="#两栏" class="headerlink" title="两栏"></a>两栏</h2><h2 id="三栏，中间自适应，左右固定"><a href="#三栏，中间自适应，左右固定" class="headerlink" title="三栏，中间自适应，左右固定"></a>三栏，中间自适应，左右固定</h2><h2 id="三栏，右侧自适应，左中固定"><a href="#三栏，右侧自适应，左中固定" class="headerlink" title="三栏，右侧自适应，左中固定"></a>三栏，右侧自适应，左中固定</h2><h2 id="sickty-footer"><a href="#sickty-footer" class="headerlink" title="sickty footer"></a>sickty footer</h2>
+                <h1 id="水平垂直居中"><a href="#水平垂直居中" class="headerlink" title="水平垂直居中"></a>水平垂直居中</h1><h2 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h2><ol>
+<li>设置<code>text-align:center</code>-&gt;水平居中，设置<code>height=line-height</code>-&gt;垂直居中。</li>
+<li><p>Flex布局</p>
+<pre><code>/* 父元素 */
+display: flex;
+justify-content: center;
+</code></pre></li>
+<li><p>table-cell</p>
+<pre><code>display: table-cell;
+vertical-align: middle;
+text-align: center;
+</code></pre></li>
+</ol>
+<h2 id="块级元素知道宽高实现水平垂直居中"><a href="#块级元素知道宽高实现水平垂直居中" class="headerlink" title="块级元素知道宽高实现水平垂直居中"></a>块级元素知道宽高实现水平垂直居中</h2><ol>
+<li><p>position:absolute + margin:auto<br>将元素设置成<code>position:absolute</code>，并且将left、top、bottom、right设置为0，margin设置为auto。此时元素就会自动侵占父元素剩余空间，并且上/下，左/右占比相当，实现垂直水平居中。</p>
+<pre><code>.test {
+ width: 200px;
+ height: 200px;
+ background: green;
+ position:absolute;
+ left:0;
+ top: 0;
+ bottom: 0;
+ right: 0;
+ margin: auto;              
+}
+</code></pre></li>
+<li><p>position:absolute + 负margin<br>将元素设置成position:absolute，并且将left和top设置成50%。此时元素的左上角为页面正中心，也就是说元素在页面正中心的右下方，偏移距离就是元素本身的宽/高。然后通过设置负的margin(绝对值为元素的宽/高的一半)，把元素“拉”回来，从而达到居中效果。</p>
+<pre><code>.test {
+ width:200px;
+ height: 200px;
+ background:green;
+ position: absolute;
+ left:50%;
+ top:50%;
+ margin-left:-100px;
+ margin-top:-100px;               
+}
+</code></pre></li>
+<li><p>transform<br>与absolute + 负margin相同，但是由于margin在不定义height/width的情况下会失效，所以无法适用于不知道宽高的场景。兼容性不好(IE8+)</p>
+<pre><code>.test {
+ width: 200px;
+ height: 200px;
+ background: green;
+ position:absolute;
+ left:50%;    /* 定位父级的50% */
+ top:50%;
+ transform: translate(-50%,-50%); /*自己的50% */
+}
+</code></pre></li>
+</ol>
+<h2 id="块级元素不知道宽高实现垂直水平居中-同样适用于知道宽高的场景"><a href="#块级元素不知道宽高实现垂直水平居中-同样适用于知道宽高的场景" class="headerlink" title="块级元素不知道宽高实现垂直水平居中(同样适用于知道宽高的场景)"></a>块级元素不知道宽高实现垂直水平居中(同样适用于知道宽高的场景)</h2><ol>
+<li><p>flex</p>
+<pre><code>.test {
+ height:600px;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ /* 只要三句话就可以实现不定宽高水平垂直居中 */
+}
+</code></pre></li>
+<li><p>table-cell<br>兼容性好，但是性能差，浏览器绘制时间长，不利于SEO</p>
+<pre><code>/*
+table-cell实现居中
+将父盒子设置为table-cell元素，设置
+text-align:center,vertical-align: middle;
+子盒子设置为inline-block元素
+*/
+.tableCell{
+ display: table;
+}
+.tableCell .container{
+ display: table-cell;
+ text-align: center;
+ vertical-align: middle;
+}
+.tableCell .innerBox{
+ display: inline-block;
+}
+</code></pre></li>
+<li><p>flex</p>
+</li>
+</ol>
+<h1 id="分栏问题"><a href="#分栏问题" class="headerlink" title="分栏问题"></a>分栏问题</h1><h2 id="两栏"><a href="#两栏" class="headerlink" title="两栏"></a>两栏</h2><h2 id="三栏，中间自适应，左右固定"><a href="#三栏，中间自适应，左右固定" class="headerlink" title="三栏，中间自适应，左右固定"></a>三栏，中间自适应，左右固定</h2><h2 id="三栏，右侧自适应，左中固定"><a href="#三栏，右侧自适应，左中固定" class="headerlink" title="三栏，右侧自适应，左中固定"></a>三栏，右侧自适应，左中固定</h2><h2 id="sickty-footer"><a href="#sickty-footer" class="headerlink" title="sickty footer"></a>sickty footer</h2><h1 id="border"><a href="#border" class="headerlink" title="border"></a>border</h1><ol>
+<li>border-width: 不支持百分比</li>
+<li>border-style: solid dashed（虚线）dotted（点线）</li>
+</ol>
+
                 <hr>
                 
 
@@ -215,7 +302,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#垂直居中"><span class="toc-text">垂直居中</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#水平居中"><span class="toc-text">水平居中</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分栏问题"><span class="toc-text">分栏问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#两栏"><span class="toc-text">两栏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三栏，中间自适应，左右固定"><span class="toc-text">三栏，中间自适应，左右固定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三栏，右侧自适应，左中固定"><span class="toc-text">三栏，右侧自适应，左中固定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sickty-footer"><span class="toc-text">sickty footer</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#水平垂直居中"><span class="toc-text">水平垂直居中</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#行内元素"><span class="toc-text">行内元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#块级元素知道宽高实现水平垂直居中"><span class="toc-text">块级元素知道宽高实现水平垂直居中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#块级元素不知道宽高实现垂直水平居中-同样适用于知道宽高的场景"><span class="toc-text">块级元素不知道宽高实现垂直水平居中(同样适用于知道宽高的场景)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分栏问题"><span class="toc-text">分栏问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#两栏"><span class="toc-text">两栏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三栏，中间自适应，左右固定"><span class="toc-text">三栏，中间自适应，左右固定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三栏，右侧自适应，左中固定"><span class="toc-text">三栏，右侧自适应，左中固定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sickty-footer"><span class="toc-text">sickty footer</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#border"><span class="toc-text">border</span></a></li></ol>
                 </div>
             </div>
         </div>

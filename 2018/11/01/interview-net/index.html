@@ -249,14 +249,21 @@
 <h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><h3 id="数据生命期"><a href="#数据生命期" class="headerlink" title="数据生命期"></a>数据生命期</h3><ol>
 <li>cookie<br>生成时就会被指定一个maxAge值，这就是cookie的生存周期，在这个周期内cookie有效，默认关闭浏览器失效</li>
 <li>sessionStorage<br>页面会话期间可用</li>
-<li>localStorage<br>除非数据被清除，否则一直存在<h3 id="存放数据大小"><a href="#存放数据大小" class="headerlink" title="存放数据大小"></a>存放数据大小</h3></li>
-<li>cookie<br>4K左右（因为每次http请求都会携带cookie）    </li>
-<li>sessionStorage和localStorage<br>一般5M或更大<h3 id="与服务器通信"><a href="#与服务器通信" class="headerlink" title="与服务器通信"></a>与服务器通信</h3></li>
-<li>cookie<br>由对服务器的请求来传递，每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题。    </li>
-<li>sessionStorage和localStorage<br>数据不是由每个服务器请求传递的，而是只有在请求时使用数据，不参与和服务器的通信。<h3 id="易用性"><a href="#易用性" class="headerlink" title="易用性"></a>易用性</h3></li>
-<li>cookie<br>cookie需要自己封装setCookie，getCookie。    </li>
-<li>sessionStorage和localStorage<br>可以用源生接口，也可再次封装来对Object和Array有更好的支持。<h3 id="共同点"><a href="#共同点" class="headerlink" title="共同点"></a>共同点</h3>都是保存在浏览器端，和服务器端的session机制不同。</li>
+<li>localStorage<br>除非数据被清除，否则一直存在</li>
 </ol>
+<h3 id="存放数据大小"><a href="#存放数据大小" class="headerlink" title="存放数据大小"></a>存放数据大小</h3><ol>
+<li>cookie<br>4K左右（因为每次http请求都会携带cookie）    </li>
+<li>sessionStorage和localStorage<br>一般5M或更大</li>
+</ol>
+<h3 id="与服务器通信"><a href="#与服务器通信" class="headerlink" title="与服务器通信"></a>与服务器通信</h3><ol>
+<li>cookie<br>由对服务器的请求来传递，每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题。    </li>
+<li>sessionStorage和localStorage<br>数据不是由每个服务器请求传递的，而是只有在请求时使用数据，不参与和服务器的通信。</li>
+</ol>
+<h3 id="易用性"><a href="#易用性" class="headerlink" title="易用性"></a>易用性</h3><ol>
+<li>cookie<br>cookie需要自己封装setCookie，getCookie。    </li>
+<li>sessionStorage和localStorage<br>可以用源生接口，也可再次封装来对Object和Array有更好的支持。</li>
+</ol>
+<h3 id="共同点"><a href="#共同点" class="headerlink" title="共同点"></a>共同点</h3><p>都是保存在浏览器端，和服务器端的session机制不同。</p>
 <h2 id="安全性问题"><a href="#安全性问题" class="headerlink" title="安全性问题"></a>安全性问题</h2><p>​无论是cookie还是HTML5的本地存储，都是相对不安全的，很容易受到各种各样的攻击，特别是HTML5的存储空间大，给了攻击者更大的发挥平台，所以都不能用来存储敏感信息。登录信息等重要信息还是存放到服务器里比较好。</p>
 
                 <hr>
