@@ -265,7 +265,204 @@ text-align:center,vertical-align: middle;
 <li><p>flex</p>
 </li>
 </ol>
-<h1 id="分栏问题"><a href="#分栏问题" class="headerlink" title="分栏问题"></a>分栏问题</h1><h2 id="两栏"><a href="#两栏" class="headerlink" title="两栏"></a>两栏</h2><h2 id="三栏，中间自适应，左右固定"><a href="#三栏，中间自适应，左右固定" class="headerlink" title="三栏，中间自适应，左右固定"></a>三栏，中间自适应，左右固定</h2><h2 id="三栏，右侧自适应，左中固定"><a href="#三栏，右侧自适应，左中固定" class="headerlink" title="三栏，右侧自适应，左中固定"></a>三栏，右侧自适应，左中固定</h2><h2 id="sickty-footer"><a href="#sickty-footer" class="headerlink" title="sickty footer"></a>sickty footer</h2><h1 id="border"><a href="#border" class="headerlink" title="border"></a>border</h1><ol>
+<h1 id="分栏问题"><a href="#分栏问题" class="headerlink" title="分栏问题"></a>分栏问题</h1><h2 id="两栏"><a href="#两栏" class="headerlink" title="两栏"></a>两栏</h2><h2 id="三栏，中间自适应，左右固定"><a href="#三栏，中间自适应，左右固定" class="headerlink" title="三栏，中间自适应，左右固定"></a>三栏，中间自适应，左右固定</h2><ol>
+<li><p>Float方法</p>
+<ul>
+<li>元素浮动后，脱离文档流。</li>
+<li>左右栏分别浮动在窗口两边，中间块(处于文档流中)受左右浮动影响被卡在中间无法继续向左右伸展已达到自适应，最后按需设置中间块的margin值来改变快间间隙即可。</li>
+<li>基于纯float实现的三栏布局需要将中间的内容放在HTML结构的最后，DOM结构为左-右-中，否则右侧会沉在中间内容的下侧。</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>由于DOM结构限制左-右-中，主要内容无法最先加载</li>
+</ul>
+<ul>
+<li>高度中间高度超出且没有margin的情况下会出问题(文字环绕)：解决方案为清除浮动或创建BFC(实质也是清除浮动)</li>
+</ul>
+</li>
+</ol>
+<pre><code>.left {
+    float: left;
+    height: 200px;
+    width: 200px;
+    background-color: red;
+    }
+  .right {
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    float: right;
+  }
+  .main {
+    margin-left: 220px;
+    margin-right: 220px;
+    height: 200px;
+    background-color: green;
+  }
+</code></pre><ol start="2">
+<li><p>绝对定位 position:absolute<br>绝对定位的元素脱离文档流，相对于最近的已经定位的祖先元素进行定位。无需考虑HTML中结构的顺序。</p>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>由于容器脱离了文档流，导致子元素必须脱离文档流。</li>
+<li>高度未知的情况下会出问题。</li>
+</ul>
+</li>
+</ol>
+<pre><code>  .main {
+    height: 200px;
+    margin: 0 220px;
+    background-color: green;
+  }
+  .left {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 0;
+    background-color: red;
+  }
+  .right {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    right: 0;
+  }
+</code></pre><ol start="3">
+<li>Flex</li>
+</ol>
+<pre><code>  .container {
+    display: flex;
+  }
+  .main {
+    flex: 1;
+    margin: 0 20px;
+    height: 200px;
+    background-color: green;
+  }
+  .left {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+  }
+  .right {
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+  }
+</code></pre><ol start="4">
+<li>Table<br><strong>缺点</strong><ul>
+<li>无法设置栏边距，左中右模块间无间隔</li>
+<li>对SEO不够友好</li>
+<li>当一个格高度增加，其余的格也会被动增加高度</li>
+</ul>
+</li>
+</ol>
+<pre><code>  .container {
+    display: table;
+    width: 100%;
+      }
+  .left, .main, .right {
+      display: table-cell;
+      }
+  .left {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+      }
+  .main {
+      background-color: green;
+      }
+  .right {
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+      }
+</code></pre><ol start="5">
+<li>圣杯布局</li>
+</ol>
+<ul>
+<li>DOM结构为中-左-右。.container设置margin-left和margin-right为左右栏腾出空间</li>
+<li>中间部分需要根据浏览器宽度自适应，所以要用width:100%，这里设三栏均向左浮动，因为中间100%，左层和右层没有位置上去。</li>
+<li>将左栏设置为margin-left:-100%后，发现left上去了。这是因为左栏已经在最左边了，向左移动时，由于左侧没空间了，只能往上挪。而向左挪100%就相当于移动了一个main的距离，相当于向上移。</li>
+<li>按第二步的方法，将右栏向左移动一个身位(即margin:-200px)，这时右栏来到了上方的最右边。</li>
+<li>但由于左右栏遮挡住了中间部分，于是采用相对定位方法，各自相对于自己把自己挪出去，得到最终结果。</li>
+</ul>
+<pre><code>  .container {  
+    margin-left: 220px;       /* 为左右栏腾出空间 */
+    margin-right: 220px;
+  }
+  .main {
+    float: left;
+    width: 100%;
+    height: 200px;
+    background-color: green;
+  }
+  .left {
+    float: left;
+    width: 200px;
+    height: 200px;
+    margin-left: -100%;
+    position: relative;
+    left: -220px;
+    background-color: red;
+  }
+  .right {
+    float: left;
+    width: 200px;
+    height: 200px;
+    margin-left: -200px;
+    position: relative;
+    right: -220px;
+    background-color: blue;
+  }
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;main&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+</code></pre><ol start="6">
+<li>双飞翼布局<br>圣杯布局实际看起来是复杂的后期维护性也不是很高，在淘宝UED的探讨下，出来了一种新的布局方式就是双飞翼布局，增加多一个div就可以不用相对布局了，只用到了浮动和负边距。和圣杯布局差异的地方已经被注释。</li>
+</ol>
+<pre><code>  .container {
+  /* margin-left: 220px;
+    margin-right: 220px; */
+  }
+  .main {
+    float: left;
+    width: 100%;
+    height: 200px;
+    background-color: green;
+  }
+  .left {
+    float: left;
+    width: 200px;
+    height: 200px;
+    margin-left: -100%;
+    /*  position: relative;
+    left: -220px;         */
+    background-color: red;
+  }
+  .right {
+    float: left;
+    width: 200px;
+    height: 200px;
+    margin-left: -200px;
+  /*  position: relative;
+    right: -220px;         */
+    background-color: blue;
+  }
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;main&quot;&gt;
+            &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;    &lt;!-- 新增inner --&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+</code></pre><h2 id="三栏，右侧自适应，左中固定"><a href="#三栏，右侧自适应，左中固定" class="headerlink" title="三栏，右侧自适应，左中固定"></a>三栏，右侧自适应，左中固定</h2><h2 id="sickty-footer"><a href="#sickty-footer" class="headerlink" title="sickty footer"></a>sickty footer</h2><h1 id="border"><a href="#border" class="headerlink" title="border"></a>border</h1><ol>
 <li>border-width: 不支持百分比</li>
 <li>border-style: solid dashed（虚线）dotted（点线）</li>
 </ol>
