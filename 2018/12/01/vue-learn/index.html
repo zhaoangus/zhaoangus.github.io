@@ -253,6 +253,13 @@ unwatch() //注销watch
 <li>纯前端渲染 =&gt; webpack dev server 8000端口</li>
 <li>服务端渲染 =&gt; nodejs/webpack server compile/server bundle server xxxx端口 =&gt; 不包含script中的js代码，只有html</li>
 </ol>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><h2 id="computed原理"><a href="#computed原理" class="headerlink" title="computed原理"></a>computed原理</h2><ol>
+<li>需要建立数据依赖收集，利用 JavaScript 单线程原理和 Vue 的 Getter 设计，通过一个简单的发布订阅，就可以在一次计算属性求值的过程中收集到相关依赖。</li>
+<li>data 属性初始化 getter setter：通过Object.defineProperty()给data设置setter  getter。</li>
+<li>computed 计算属性初始化，提供的函数将用作属性 vm.reversedMessage 的 getter。</li>
+<li>在执行 message getter 方法时，如果 Dep 处于依赖收集状态，则判定 message 为 reversedMessage 的依赖，并建立依赖关系。</li>
+<li>当 message 发生变化时，根据依赖关系，触发 reverseMessage 的重新计算。</li>
+</ol>
 
                 <hr>
                 
@@ -286,7 +293,7 @@ unwatch() //注销watch
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue实例"><span class="toc-text">Vue实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue实例上的属性"><span class="toc-text">Vue实例上的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例上的方法"><span class="toc-text">实例上的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生命周期"><span class="toc-text">生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原生指令"><span class="toc-text">原生指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组件"><span class="toc-text">组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-router"><span class="toc-text">Vue-router</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vuex"><span class="toc-text">Vuex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务端渲染"><span class="toc-text">服务端渲染</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue实例"><span class="toc-text">Vue实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue实例上的属性"><span class="toc-text">Vue实例上的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例上的方法"><span class="toc-text">实例上的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生命周期"><span class="toc-text">生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原生指令"><span class="toc-text">原生指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组件"><span class="toc-text">组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-router"><span class="toc-text">Vue-router</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vuex"><span class="toc-text">Vuex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务端渲染"><span class="toc-text">服务端渲染</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#原理"><span class="toc-text">原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#computed原理"><span class="toc-text">computed原理</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>

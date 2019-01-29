@@ -232,6 +232,37 @@
 <li>@keyframe:通过from…to或百分比规定变化的时间</li>
 <li>animation</li>
 </ul>
+<h1 id="border"><a href="#border" class="headerlink" title="border"></a>border</h1><ol>
+<li>border-width: 不支持百分比</li>
+<li>border-style: solid dashed（虚线）dotted（点线）</li>
+</ol>
+<h1 id="浮动和清除浮动"><a href="#浮动和清除浮动" class="headerlink" title="浮动和清除浮动"></a>浮动和清除浮动</h1><ol>
+<li>父级设置高度</li>
+<li>父级定义伪类：after和zoom</li>
+<li>在子级最后加一个<code>&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</code>设置css<code>.clear:{clear:both}</code></li>
+<li>父级div定义<code>overflow:hidden</code></li>
+</ol>
+<h1 id="三角形实现"><a href="#三角形实现" class="headerlink" title="三角形实现"></a>三角形实现</h1><pre><code>  .triangle {
+      width: 0;
+      height: 0;
+      border-top: 20px red solid;
+      border-bottom: 20px transparent solid;
+      border-left: 20px transparent solid;
+      border-right: 20px transparent solid;
+  }
+</code></pre><p>注：梯形可以用2个三角形和一个正方形拼起来。</p>
+<h1 id="nth-child"><a href="#nth-child" class="headerlink" title="nth-child()"></a>nth-child()</h1><p>规定属于其父元素的第n个子元素每个的背景色。<br>奇偶行：</p>
+<pre><code>p:nth-child(odd)
+{
+background:#ff0000;
+}
+p:nth-child(even)
+{
+background:#0000ff;
+}
+</code></pre><p>:nth-child(n+4):nth-child(-n+8)使用 nth-child(n+4):nth-child(-n+8) 我们可以选中某一范围内子元素，上面的例子里是从第4个到第8个子元素</p>
+<h1 id="translate"><a href="#translate" class="headerlink" title="translate"></a>translate</h1><h2 id="matrix-方法"><a href="#matrix-方法" class="headerlink" title="matrix()方法"></a>matrix()方法</h2><p>matrix() 方法把所有 2D 转换方法组合在一起。<br>matrix() 方法需要六个参数，包含数学函数，允许：旋转、缩放、移动以及倾斜元素。</p>
+<p>Matrix()与translate()关系：translate(x,y)对应Matrix(1,0,0,1,x,y);<br>Matrix()与scale()关系：scale(x,y)对应Matrix(x,0,0,y,0,0);<br>Matrix()与rotate()关系：rotate(x)对应Matrix(cos(x),sin(x),-sin(x),cos(x),0,0)<br>Matrix()与skew()关系：skew(x,y)对应Matrix(1,tan(x),tan(y),1,0,0)</p>
 
                 <hr>
                 
@@ -265,7 +296,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#盒子模型与怪异盒模型"><span class="toc-text">盒子模型与怪异盒模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#盒子模型"><span class="toc-text">盒子模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怪异盒模型"><span class="toc-text">怪异盒模型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#css3新增属性"><span class="toc-text">css3新增属性</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#盒子模型与怪异盒模型"><span class="toc-text">盒子模型与怪异盒模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#盒子模型"><span class="toc-text">盒子模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怪异盒模型"><span class="toc-text">怪异盒模型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#css3新增属性"><span class="toc-text">css3新增属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#border"><span class="toc-text">border</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#浮动和清除浮动"><span class="toc-text">浮动和清除浮动</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三角形实现"><span class="toc-text">三角形实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nth-child"><span class="toc-text">nth-child()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#translate"><span class="toc-text">translate</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#matrix-方法"><span class="toc-text">matrix()方法</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>

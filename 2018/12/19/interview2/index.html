@@ -225,6 +225,19 @@ console.log(first, second, rest); // w o [&quot;r&quot;,&quot;l&quot;,&quot;d&qu
 <li>代理服务器</li>
 <li>CORS</li>
 </ol>
+<h2 id="js改变与不改变原数组的方法整理"><a href="#js改变与不改变原数组的方法整理" class="headerlink" title="js改变与不改变原数组的方法整理"></a>js改变与不改变原数组的方法整理</h2><p>改变：</p>
+<ol>
+<li>push(返回添加元素后的数组长度)</li>
+<li>unshift(返回添加元素后的数组长度)</li>
+<li>pop(返回删除的元素)</li>
+<li>shift(返回删除的元素)</li>
+<li>reverse(返回逆序后的数组)</li>
+<li>splice(返回删除的元素组成的数组)<br>不改变：</li>
+<li>concat(返回原数组和参数数组合并后的新数组)</li>
+<li>slice(返回指定数组的一个片段或子数组)</li>
+<li>map(函数返回值组成的新数组)</li>
+<li>filter(返回调用数组的一个子集)</li>
+</ol>
 
                 <hr>
                 
@@ -253,7 +266,7 @@ console.log(first, second, rest); // w o [&quot;r&quot;,&quot;l&quot;,&quot;d&qu
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#迭代器"><span class="toc-text">迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#for-of"><span class="toc-text">for-of</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内置迭代器"><span class="toc-text">内置迭代器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#generator函数"><span class="toc-text">generator函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Promise"><span class="toc-text">Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise对象有三种状态"><span class="toc-text">Promise对象有三种状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#then"><span class="toc-text">then</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意点"><span class="toc-text">注意点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#跨域"><span class="toc-text">跨域</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么有跨域"><span class="toc-text">为什么有跨域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同源"><span class="toc-text">同源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同源策略"><span class="toc-text">同源策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同源下接口请求的正确打开方式"><span class="toc-text">同源下接口请求的正确打开方式</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#迭代器"><span class="toc-text">迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#for-of"><span class="toc-text">for-of</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内置迭代器"><span class="toc-text">内置迭代器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解构赋值"><span class="toc-text">解构赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#generator函数"><span class="toc-text">generator函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Promise"><span class="toc-text">Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise对象有三种状态"><span class="toc-text">Promise对象有三种状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#then"><span class="toc-text">then</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意点"><span class="toc-text">注意点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#跨域"><span class="toc-text">跨域</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么有跨域"><span class="toc-text">为什么有跨域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同源"><span class="toc-text">同源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同源策略"><span class="toc-text">同源策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同源下接口请求的正确打开方式"><span class="toc-text">同源下接口请求的正确打开方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js改变与不改变原数组的方法整理"><span class="toc-text">js改变与不改变原数组的方法整理</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
