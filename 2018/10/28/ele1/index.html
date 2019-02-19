@@ -442,7 +442,7 @@ exports.b2 = function () {
 <h2 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h2><p>（待补充）</p>
 <h2 id="border-1px"><a href="#border-1px" class="headerlink" title="border-1px"></a>border-1px</h2><h3 id="物理像素（设备像素）-amp-逻辑像素（CSS像素）"><a href="#物理像素（设备像素）-amp-逻辑像素（CSS像素）" class="headerlink" title="物理像素（设备像素）&amp; 逻辑像素（CSS像素）"></a>物理像素（设备像素）&amp; 逻辑像素（CSS像素）</h3><p><strong>物理像素</strong>，又称<strong>设备像素</strong>，在同一个设备上，他的物理像素是固定的，设备厂商出厂是就设置好了，即，一个设备的分辨率是固定的。<br><strong>逻辑像素</strong>，又称css像素，viewport中的一个小方格。写css代码的时候，用的就是css像素。<br><strong>像素比</strong>，物理像素和逻辑像素的比例。当比例为 1：1 时，表示1个物理像素显示一个css像素；当比例为 2：1 时，表示使用<strong>4</strong>个物理像素显示1个逻辑像素。像素比可以使用<code>window.devicePixelRatio</code>来获得。</p>
 <p>UI稿上的36px，60px，其实是物理像素，是相对于设备分辨率下的字号，而我们要在css中填写的字号，是css像素，是相对于逻辑像素下的字号。</p>
-<h3 id="rem和em"><a href="#rem和em" class="headerlink" title="rem和em"></a>rem和em</h3><p>REM（font size of the root element），是指相对于根元素的字体大小的单位，是个相对单位，如果不设置根元素的字体大小，则会默认以根元素的16px的大小计算值。<br>EM（font size of the element），是指相对于父元素的字体大小单位，也是个相对单位。</p>
+<h3 id="rem和em"><a href="#rem和em" class="headerlink" title="rem和em"></a>rem和em</h3><p>REM（font size of the root element），是指相对于根元素的字体大小的单位，是个相对单位，如果不设置根元素的字体大小，则会默认以根元素的16px的大小计算值。<br>EM（font size of the element），是指相对于使用em单位元素的字体大小单位，也是个相对单位。</p>
 <h3 id="1px实现："><a href="#1px实现：" class="headerlink" title="1px实现："></a>1px实现：</h3><ol>
 <li>伪类+子绝父相<br>原理是把原先元素的 border 去掉，然后利用 :before 或者 :after 重做 border ，并 transform 的 scale 缩小一半，原先的元素相对定位，新做的 border 绝对定位。<pre><code>border-1px($color)
 position: relative
